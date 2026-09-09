@@ -1430,7 +1430,16 @@ function go(id){const el=document.getElementById(id);if(el)el.scrollIntoView({be
    Antes el navegador conservaba el desplazamiento anterior y el resultado
    aparecía por encima de la pantalla: había que subir a mano para verlo.
    Se descuenta la altura del menú, que es fijo. */
+/* Al cargar la página, quizStart() pinta la primera etapa del quiz. Sin esta
+   guarda el reposicionamiento se disparaba durante ese pintado inicial y la
+   página abría directamente en "Descubre tu arcano", saltándose el tiraje.
+   Solo reposicionamos después de que la persona haya interactuado. */
+let HUBO_INTERACCION=false;
+['pointerdown','keydown','touchstart','wheel'].forEach(ev=>
+  addEventListener(ev,()=>{HUBO_INTERACCION=true;},{once:true,passive:true}));
+
 function verEtapa(suave){
+  if(!HUBO_INTERACCION)return;
   requestAnimationFrame(()=>{
     const sec=document.getElementById('arcano'); if(!sec)return;
     const nav=document.getElementById('nav');
