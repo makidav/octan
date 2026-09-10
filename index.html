@@ -546,7 +546,7 @@ footer{border-top:1px solid var(--rule);padding:clamp(52px,8vh,84px) 20px;text-a
 .ruta-s{font-size:14px;line-height:1.5;margin-top:3px}
 .ruta-s em{font-style:italic;color:var(--gold);font-size:13px}
 
-/* formulario astral */
+/* formulario astral (retirado; estilos conservados por si vuelve) */
 .ast-form{max-width:490px;margin:0 auto;text-align:left}
 .ast-field{margin-bottom:20px}
 .ast-label{font-family:'Cormorant SC',serif;font-weight:600;font-size:11.5px;letter-spacing:.24em;color:var(--label);display:block;margin-bottom:9px}
@@ -880,9 +880,9 @@ footer{border-top:1px solid var(--rule);padding:clamp(52px,8vh,84px) 20px;text-a
 <!-- ═══════════ QUIZ ═══════════ -->
 <section class="quiz" id="arcano">
   <div class="shell quiz-wrap">
-    <div class="eyebrow rise">Dos caminos</div>
-    <h2 class="display rise" data-d="1">Descubre tu arcano</h2>
-    <p class="quiz-p rise" data-d="2">Si ya tuviste tu lectura, esto te ayuda a reconocer cuál de los veintidós arcanos es el tuyo. Si aún no, lo calculamos con tu carta.</p>
+    <div class="eyebrow rise">Después de tu lectura</div>
+    <h2 class="display rise" data-d="1">Reconoce tu arcano</h2>
+    <p class="quiz-p rise" data-d="2">Cuatro preguntas sobre lo que trajeron las cartas, y después el mazo: eliges dos y ves cuál reconoces. No sustituye una lectura — la continúa. Si aún no has tenido la tuya, búscate un tarotista y vuelve con lo que viste.</p>
     <div id="stage"></div>
   </div>
 </section>
@@ -1442,9 +1442,9 @@ function expBlock(k){
 
 /* ══════════════ MODAL ══════════════ */
 const ov=document.getElementById('ov'),sheet=document.getElementById('sheet'),cart=document.getElementById('cart');
-/* Línea activa: la del filtro de la rejilla, la del quiz de tarot o la del cálculo astral. */
+/* Línea activa: la elegida en el quiz o la del filtro de la rejilla. */
 let SHEET_LINEA=null, SHEET_K=null;
-function lineaActiva(){const a=(AST_LINEA&&AST_LINEA!=='todas')?AST_LINEA:null;return (typeof qz!=='undefined'&&qz.g)||a||(fOr!=='todas'?fOr:null);}
+function lineaActiva(){return (typeof qz!=='undefined'&&qz.g)||(fOr!=='todas'?fOr:null);}
 let SHEET_STACK=[];
 function openSheet(k,fromStack){
   const abierta=sheet.classList.contains('on');
@@ -1694,37 +1694,15 @@ const LINEA={
   M:TODOS.filter(k=>['M','U','D'].includes(F[k].or))
 };
 
-function quizStart(){
-  qz={};
-  stage.innerHTML=`<div class="fade">
-    <div class="qstep">PUNTO DE PARTIDA</div>
-    <div class="qq">¿Cómo quieres descubrir tu arcano?</div>
-    <p class="qhint">Elige el camino que corresponde a tu momento.</p>
-    <div class="ruta-sel">
-      <button class="ruta-btn" onclick="quizRutaTarot()">
-        <div class="ruta-ic">☽</div>
-        <div>
-          <div class="ruta-t">Ya tuve mi lectura de tarot</div>
-          <div class="ruta-s">Reconocí un arcano en las cartas. Cuatro preguntas, después extiendes el mazo y levantas tu carta.<br><em>Sin datos personales</em></div>
-        </div>
-      </button>
-      <button class="ruta-btn" onclick="quizRutaAstral()">
-        <div class="ruta-ic">✦</div>
-        <div>
-          <div class="ruta-t">Aún no he tenido mi lectura</div>
-          <div class="ruta-s">Leemos tu carta astral, tu Saju coreano, tu Jyotish védico y el cielo del instante en que preguntas para encontrar cuál de los veintidós te describe hoy.<br><em>Requiere fecha, hora y ciudad de nacimiento</em></div>
-        </div>
-      </button>
-    </div>
-  </div>`;
-  verEtapa();
-}
+/* El arcano no se calcula: se reconoce. Cuatro preguntas ordenan el mazo y la
+   persona levanta sus cartas. Nada sustituye la lectura de un tarotista. */
+function quizStart(){ quizRutaTarot(); }
 
 /* ─── PASO 1 · la línea ─── */
 function quizRutaTarot(){
   qz={};
   stage.innerHTML=`<div class="fade">
-    <div class="qstep">RUTA TAROT · PASO 1 DE 4</div>
+    <div class="qstep">PASO 1 DE 4</div>
     <div class="qq">¿Para quién es esta lectura?</div>
     <p class="qhint">Cada línea reúne sus arcanos y los que no tienen género.</p>
     <div class="qopts">
@@ -1735,7 +1713,7 @@ function quizRutaTarot(){
         <div class="qopt-ic">♂</div><div><div class="qopt-t">Para Él</div>
         <div class="qopt-s">Diecisiete arcanos: los masculinos, los que no tienen género y Los Enamorados.</div></div></div>
     </div>
-    <button class="qback" onclick="quizStart()">← Volver</button></div>`;
+    </div>`;
   verEtapa();
 }
 
@@ -1746,7 +1724,7 @@ function quizG(g){
     `<div class="qopt" tabindex="0" onclick="quizT(${i})" onkeydown="if(event.key==='Enter')quizT(${i})">
       <div class="qopt-ic">${t[0]}</div><div><div class="qopt-t">${t[1]}</div><div class="qopt-s">${t[2]}</div></div></div>`).join('');
   stage.innerHTML=`<div class="fade">
-    <div class="qstep">RUTA TAROT · PASO 2 DE 4</div>
+    <div class="qstep">PASO 2 DE 4</div>
     <div class="qq">¿Qué trajo tu lectura?</div>
     <p class="qhint">Lo que estuvo en el centro de la mesa.</p>
     <div class="qopts qopts-3">${opts}</div>
@@ -1761,7 +1739,7 @@ function quizT(t){
     `<div class="qopt" tabindex="0" onclick="quizV(${i})" onkeydown="if(event.key==='Enter')quizV(${i})">
       <div class="qopt-ic">${v[0]}</div><div><div class="qopt-t">${v[1]}</div><div class="qopt-s">${v[2]}</div></div></div>`).join('');
   stage.innerHTML=`<div class="fade">
-    <div class="qstep">RUTA TAROT · PASO 3 DE 4</div>
+    <div class="qstep">PASO 3 DE 4</div>
     <div class="qq">¿En qué momento te dejó la lectura?</div>
     <p class="qhint">No qué tema tocó, sino hacia dónde se movía.</p>
     <div class="qopts">${opts}</div>
@@ -1776,7 +1754,7 @@ function quizV(v){
     `<div class="qopt" tabindex="0" onclick="quizM(${i})" onkeydown="if(event.key==='Enter')quizM(${i})">
       <div class="qopt-ic">${m[0]}</div><div><div class="qopt-t">${m[1]}</div><div class="qopt-s">${m[2]}</div></div></div>`).join('');
   stage.innerHTML=`<div class="fade">
-    <div class="qstep">RUTA TAROT · PASO 4 DE 4</div>
+    <div class="qstep">PASO 4 DE 4</div>
     <div class="qq">¿Qué quieres llevar contigo?</div>
     <p class="qhint">La energía que tu esencia anclará después de la lectura.</p>
     <div class="qopts">${opts}</div>
@@ -1820,7 +1798,7 @@ function extenderMazo(){
   const contador=qz.elegidas.map((_,i)=>`<span class="mz-p llena">${i+1}</span>`).join('')
     + Array.from({length:Math.max(0,faltan)},(_,i)=>`<span class="mz-p">${qz.elegidas.length+i+1}</span>`).join('');
   stage.innerHTML=`<div class="fade">
-    <div class="qstep">RUTA TAROT · EL MAZO</div>
+    <div class="qstep">EL MAZO</div>
     <div class="qq">${qz.tercera?'Levanta una tercera carta':'Elige dos cartas'}</div>
     <p class="qhint">${qz.tercera
       ? 'Ninguna de las dos anteriores era. Toma una más.'
@@ -1886,7 +1864,7 @@ function abrirMazo(){
     `<button class="mz-c abierta" onclick="elegirDelMazo('${k}')" style="--d:${i*20}ms">
       ${cardFront(k)}<span class="mz-n">${F[k].n}</span></button>`).join('');
   stage.innerHTML=`<div class="fade">
-    <div class="qstep">RUTA TAROT · EL MAZO ABIERTO</div>
+    <div class="qstep">EL MAZO ABIERTO</div>
     <div class="qq">Elige el arcano que reconociste</div>
     <p class="qhint">Los ${pool.length} arcanos de tu línea, a la vista. El que salió en tu lectura está aquí.</p>
     <div class="mazo abierto">${cartas}</div>
@@ -1938,855 +1916,6 @@ function renderResultado(k,opt){
   verEtapa();
 }
 
-/* ═══════════════════════════════════════════════════════════
-   RUTA 2 — DESCUBRIMIENTO POR ESENCIA ASTRAL
-   Motor: carta occidental + Saju + Jyotish
-   ═══════════════════════════════════════════════════════════ */
-
-/* ── Variables de estado astral ── */
-let AST = {fecha:'',hora:'',ciudad:'',sexo:'',sinHora:false};
-let AST_SEXO = null;
-let AST_LINEA = null;   /* qué línea de esencias quieres llevar · independiente del sexo al nacer */
-let CIUDAD_COORDS = null;
-
-/* ── Geocodificación real con Nominatim (OpenStreetMap) ── */
-/* Sin API key, sin límite de países, funciona con cualquier ciudad del mundo.
-   Se añade zona horaria vía timeapi.io, también gratuita y sin key.
-   Nominatim pide User-Agent; la cabecera la envía el navegador automáticamente. */
-
-let _geoTimer=null, _geoCache={};
-/* Coords resueltas de la ciudad seleccionada; se rellenan al elegir de la lista */
-let _geoSeleccionada=null;
-
-async function buscarCiudades(q){
-  if(_geoCache[q]) return _geoCache[q];
-  const url=`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=6&featuretype=city&accept-language=es`;
-  const r=await fetch(url,{headers:{'Accept-Language':'es'}});
-  if(!r.ok) throw new Error('Nominatim no respondió');
-  const data=await r.json();
-  _geoCache[q]=data;
-  return data;
-}
-
-async function tzDeCoords(lat,lon){
-  /* timeapi.io: gratuito, sin key, devuelve la zona IANA exacta */
-  try{
-    const r=await fetch(`https://timeapi.io/api/timezone/coordinate?latitude=${lat}&longitude=${lon}`);
-    if(!r.ok) throw new Error();
-    const d=await r.json();
-    return d.timeZone||estimarTZ(lon);
-  }catch(_){return estimarTZ(lon);}
-}
-
-/* Fallback: estimación por longitud (±30 min de error; suficiente si falla la API) */
-function estimarTZ(lon){
-  const off=Math.round(lon/15);
-  if(off===0) return 'UTC';
-  return off>0?`Etc/GMT-${off}`:`Etc/GMT+${Math.abs(off)}`;
-}
-
-function autocompletarCiudad(val){
-  /* Actualiza el estado de "seleccionada" cuando el usuario borra o cambia el texto */
-  _geoSeleccionada=null;
-  astErrClear();
-  const inp=document.getElementById('ast-ciudad');
-  const status=document.getElementById('ast-ciudad-status');
-  if(!inp||!status)return;
-
-  if(val.length<3){
-    status.textContent='';
-    document.getElementById('ast-ciudades-list').innerHTML='';
-    return;
-  }
-
-  clearTimeout(_geoTimer);
-  status.innerHTML='<span style="font-style:italic;color:var(--gold-dim)">Buscando...</span>';
-
-  _geoTimer=setTimeout(async()=>{
-    try{
-      const results=await buscarCiudades(val);
-      const dl=document.getElementById('ast-ciudades-list');
-      if(!dl)return;
-      if(!results.length){
-        status.textContent='No encontrada. Prueba con el nombre en inglés o la capital del país.';
-        dl.innerHTML='';return;
-      }
-      /* Guardamos un mapa nombre→datos para recuperar lat/lon al seleccionar */
-      window._geoOpts={};
-      dl.innerHTML=results.map(r=>{
-        const nombre=r.display_name.split(',').slice(0,3).join(',').trim();
-        window._geoOpts[nombre]={lat:+r.lat,lon:+r.lon,nombre};
-        return `<option value="${nombre}">`;
-      }).join('');
-      status.textContent='';
-    }catch(e){
-      status.textContent='Error de red al buscar la ciudad. Revisa tu conexión.';
-    }
-  }, 420);
-}
-
-/* Se llama cuando el usuario selecciona una opción de la lista o sale del campo */
-async function resolverCiudad(){
-  const inp=document.getElementById('ast-ciudad');
-  const status=document.getElementById('ast-ciudad-status');
-  if(!inp||!status)return;
-  const val=inp.value.trim();
-  if(!val){_geoSeleccionada=null;return;}
-
-  /* Si ya tenemos coords (seleccionó de la lista), obtener TZ y listo */
-  const opt=window._geoOpts&&window._geoOpts[val];
-  if(opt){
-    status.innerHTML='<span style="font-style:italic;color:var(--gold-dim)">Obteniendo zona horaria...</span>';
-    const tz=await tzDeCoords(opt.lat,opt.lon);
-    _geoSeleccionada={lat:opt.lat,lon:opt.lon,tz,nombre:val};
-    status.innerHTML=`<span style="color:var(--gold);font-size:13px">✦ ${val} · ${tz}</span>`;
-    astErrClear();
-    return;
-  }
-
-  /* Si tecleó a mano sin seleccionar de la lista, intentamos resolver igual */
-  if(val.length>=3){
-    status.innerHTML='<span style="font-style:italic;color:var(--gold-dim)">Verificando ciudad...</span>';
-    try{
-      const results=await buscarCiudades(val);
-      if(results.length){
-        const r=results[0];
-        const tz=await tzDeCoords(+r.lat,+r.lon);
-        const nombre=r.display_name.split(',').slice(0,3).join(',').trim();
-        _geoSeleccionada={lat:+r.lat,lon:+r.lon,tz,nombre};
-        status.innerHTML=`<span style="color:var(--gold);font-size:13px">✦ ${nombre} · ${tz}</span>`;
-        astErrClear();
-      }else{
-        _geoSeleccionada=null;
-        status.textContent='Ciudad no encontrada. Prueba con otro nombre.';
-      }
-    }catch(_){
-      _geoSeleccionada=null;
-      status.textContent='Error de red. Revisa tu conexión e inténtalo de nuevo.';
-    }
-  }
-}
-
-/* ── Pantalla del formulario astral ── */
-function quizRutaAstral(){
-  AST={fecha:'',hora:'',ciudad:'',sexo:'',sinHora:false};
-  AST_SEXO=null; AST_LINEA='todas'; AST_ENERGIA=null; CIUDAD_COORDS=null;
-  stage.innerHTML=`<div class="fade">
-    <div class="qstep">RUTA ASTRAL</div>
-    <div class="qq">El arcano que te proponemos explorar</div>
-    <div class="ast-aviso">
-      Un método simbólico propio de OCTAN que cruza correspondencias inspiradas en tres tradiciones —carta astral occidental, Saju coreano y Jyotish védico— con el cielo del instante en que preguntas. Las posiciones se estiman a partir de tus datos de nacimiento; la ponderación que las convierte en un arcano es un método simbólico propio de OCTAN y no pertenece a ninguna de las tres escuelas.<br>
-      No sustituye una lectura de tarot ni la interpretación de un astrólogo. Te propone un arcano para explorar, no un diagnóstico.
-    </div>
-
-    <div class="ast-form">
-      <div class="ast-field">
-        <label class="ast-label" for="ast-fecha">Fecha de nacimiento</label>
-        <input class="ast-input" type="date" id="ast-fecha" autocomplete="bday">
-      </div>
-
-      <div class="ast-field">
-        <label class="ast-label">Hora de nacimiento</label>
-        <div class="ast-row">
-          <select class="ast-input" id="ast-hora12" aria-label="Hora"></select>
-          <select class="ast-input" id="ast-min12" aria-label="Minutos"></select>
-        </div>
-        <div style="display:flex;gap:9px;margin-top:9px">
-          <button type="button" class="ast-seg-btn" id="ast-am" onclick="astMeridiano('AM')" style="padding:10px 14px">
-            <b style="font-size:14px">AM</b><span>Madrugada / mañana</span>
-          </button>
-          <button type="button" class="ast-seg-btn" id="ast-pm" onclick="astMeridiano('PM')" style="padding:10px 14px">
-            <b style="font-size:14px">PM</b><span>Tarde / noche</span>
-          </button>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:10px;margin-top:11px">
-          <input type="checkbox" id="ast-sinhora" onchange="astSinHora(this.checked)" style="margin-top:3px;accent-color:var(--gold)">
-          <label for="ast-sinhora" class="ast-hint" style="cursor:pointer">No sé mi hora exacta — usaré mediodía solar (la carta será parcial)</label>
-        </div>
-      </div>
-
-      <div class="ast-field">
-        <label class="ast-label" for="ast-ciudad">Ciudad de nacimiento</label>
-        <input class="ast-input" type="text" id="ast-ciudad" list="ast-ciudades-list" placeholder="Ej: Pamplona, Tokio, São Paulo..." autocomplete="off"
-          oninput="autocompletarCiudad(this.value)" onblur="resolverCiudad()" onchange="resolverCiudad()">
-        <datalist id="ast-ciudades-list"></datalist>
-        <div id="ast-ciudad-status" class="ast-hint" style="min-height:18px"></div>
-        <div class="ast-hint">Cualquier ciudad del mundo · Si no aparece, escríbela en inglés</div>
-      </div>
-
-      <div class="ast-field">
-        <label class="ast-label">Sexo registrado al nacer</label>
-        <div class="ast-seg">
-          <button type="button" class="ast-seg-btn" id="ast-f" onclick="astSexo('F')">
-            <b>Femenino</b><span>Para el cálculo del Saju</span>
-          </button>
-          <button type="button" class="ast-seg-btn" id="ast-m" onclick="astSexo('M')">
-            <b>Masculino</b><span>Para el cálculo del Saju</span>
-          </button>
-        </div>
-        <div class="ast-hint">Solo se usa aquí: el Saju lo necesita para saber en qué dirección corren tus ciclos de diez años (daeun). No decide qué arcano te toca.</div>
-      </div>
-
-      <div class="ast-field">
-        <label class="ast-label">Qué línea quieres llevar</label>
-        <div class="ast-seg">
-          <button type="button" class="ast-seg-btn" id="ast-l-F" onclick="astLinea('F')">
-            <b>Para Ella</b><span>15 arcanos</span>
-          </button>
-          <button type="button" class="ast-seg-btn" id="ast-l-M" onclick="astLinea('M')">
-            <b>Para Él</b><span>17 arcanos</span>
-          </button>
-          <button type="button" class="ast-seg-btn on" id="ast-l-todas" onclick="astLinea('todas')">
-            <b>Los veintidós</b><span>Sin filtrar</span>
-          </button>
-        </div>
-        <div class="ast-hint">Por defecto compiten los veintidós: ningún arquetipo pertenece a un género y El Emperador puede describir a una mujer igual que La Emperatriz a un hombre. Acota la búsqueda solo si prefieres recibir una esencia de una línea concreta.</div>
-      </div>
-
-      <div class="ast-field">
-        <label class="ast-label">Qué energía quieres llevar contigo</label>
-        <div class="ast-en">
-          ${Object.entries(ENERGIAS).map(([k,e])=>
-            `<button type="button" class="ast-seg-btn" id="ast-en-${k}" onclick="astEnergia('${k}')"><b>${e.label}</b><span>${e.sub}</span></button>`).join('')}
-        </div>
-        <div class="ast-hint">Tu carta dice de dónde vienes; esto dice qué necesitas ahora. Entre los arcanos que tu cielo señala, elegimos el que responde a lo que has pedido.</div>
-      </div>
-
-      <div class="ast-err" id="ast-err"></div>
-
-      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:28px">
-        <button class="btn solid" onclick="astCalcular()"><span>REVELAR MI ARCANO</span></button>
-        <button class="btn" onclick="quizStart()"><span>← Volver</span></button>
-      </div>
-    </div>
-  </div>`;
-
-  /* Poblar selectores de hora */
-  const sh=document.getElementById('ast-hora12'), sm=document.getElementById('ast-min12');
-  sh.innerHTML='<option value="">Hora</option>';
-  for(let i=1;i<=12;i++) sh.insertAdjacentHTML('beforeend',`<option value="${i}">${i}</option>`);
-  sm.innerHTML='<option value="">Min</option>';
-  for(let i=0;i<60;i++) sm.insertAdjacentHTML('beforeend',`<option value="${i}">${String(i).padStart(2,'0')}</option>`);
-  verEtapa();
-}
-
-let AST_MERIDIANO='';
-function astMeridiano(v){
-  AST_MERIDIANO=v;
-  ['AM','PM'].forEach(x=>{const b=document.getElementById('ast-'+x.toLowerCase());if(b)b.classList.toggle('on',x===v);});
-}
-function astSexo(v){
-  AST_SEXO=v;
-  ['f','m'].forEach(x=>{const b=document.getElementById('ast-'+x);if(b)b.classList.toggle('on',x===v[0].toLowerCase());});
-  /* El arquetipo no depende del sexo. La línea arranca en "Los veintidós"
-     y solo la cambia la persona: elegir un sexo no la condiciona. */
-}
-function astEnergia(v){
-  AST_ENERGIA=v;
-  Object.keys(ENERGIAS).forEach(x=>{const b=document.getElementById('ast-en-'+x);if(b)b.classList.toggle('on',x===v);});
-}
-function astLinea(v){
-  AST_LINEA=v;
-  ['F','M','todas'].forEach(x=>{const b=document.getElementById('ast-l-'+x);if(b)b.classList.toggle('on',x===v);});
-}
-function astSinHora(v){
-  AST.sinHora=v;
-  const fila=document.querySelectorAll('#ast-hora12,#ast-min12,#ast-am,#ast-pm');
-  fila.forEach(el=>{el.disabled=v;el.style.opacity=v?'.4':'1';});
-}
-
-/* ── Validación y disparo del cálculo ── */
-function astErr(msg){const e=document.getElementById('ast-err');if(e){e.textContent=msg;e.classList.add('on');}}
-function astErrClear(){const e=document.getElementById('ast-err');if(e)e.classList.remove('on');}
-
-function astCalcular(){
-  astErrClear();
-  const fecha=document.getElementById('ast-fecha')?.value;
-  const ciudadVal=document.getElementById('ast-ciudad')?.value?.trim();
-  const sinHora=document.getElementById('ast-sinhora')?.checked;
-
-  if(!fecha){astErr('Falta tu fecha de nacimiento.');return;}
-  if(!ciudadVal){astErr('Escribe tu ciudad de nacimiento.');return;}
-  if(!AST_SEXO){astErr('Elige el sexo registrado al nacer: el Saju lo necesita para calcular la dirección de tus ciclos.');return;}
-  if(!AST_ENERGIA){astErr('Elige qué energía quieres llevar contigo.');return;}
-
-  let hora24='12:00';
-  if(!sinHora){
-    const h=document.getElementById('ast-hora12')?.value;
-    const m=document.getElementById('ast-min12')?.value;
-    if(!h||!AST_MERIDIANO){astErr('Elige la hora y el meridiano (AM/PM), o marca que no sabes la hora.');return;}
-    let hh=+h%12;
-    if(AST_MERIDIANO==='PM') hh+=12;
-    hora24=`${String(hh).padStart(2,'0')}:${String(+m||0).padStart(2,'0')}`;
-  }
-
-  /* Si ya tenemos las coordenadas resueltas, usarlas directamente */
-  if(_geoSeleccionada){
-    const coords=[_geoSeleccionada.lat,_geoSeleccionada.lon,_geoSeleccionada.tz];
-    CIUDAD_COORDS=coords;
-    mostrarCalculo(fecha, hora24, coords, sinHora, AST_SEXO);
-    return;
-  }
-
-  /* Si no se seleccionó de la lista aún, intentar resolver antes de calcular */
-  const btn=document.querySelector('[onclick="astCalcular()"]');
-  if(btn){btn.disabled=true;btn.querySelector('span').textContent='BUSCANDO CIUDAD…';}
-  buscarCiudades(ciudadVal).then(async results=>{
-    if(btn){btn.disabled=false;btn.querySelector('span').textContent='REVELAR MI ARCANO';}
-    if(!results||!results.length){astErr('Ciudad no encontrada. Prueba con otro nombre o el nombre en inglés.');return;}
-    const r=results[0];
-    const tz=await tzDeCoords(+r.lat,+r.lon);
-    const coords=[+r.lat,+r.lon,tz];
-    CIUDAD_COORDS=coords;
-    mostrarCalculo(fecha, hora24, coords, sinHora, AST_SEXO);
-  }).catch(()=>{
-    if(btn){btn.disabled=false;btn.querySelector('span').textContent='REVELAR MI ARCANO';}
-    astErr('Error de red al buscar la ciudad. Revisa tu conexión e inténtalo de nuevo.');
-  });
-}
-
-function mostrarCalculo(fecha, hora, coords, sinHora, sexo){
-  stage.innerHTML=`<div class="ast-calc fade">
-    <div class="ast-reloj">
-      <span style="animation-delay:0s"></span>
-      <span style="animation-delay:.3s"></span>
-      <span style="animation-delay:.6s"></span>
-    </div>
-    <div class="eyebrow">CALCULANDO TU ESENCIA</div>
-    <p style="font-style:italic;margin-top:10px;font-size:15px">Carta astral · Saju · Jyotish</p>
-  </div>`;
-
-  setTimeout(()=>{
-    try{
-      const resultado=calcularArcano(fecha, hora, coords, sinHora, sexo);
-      mostrarResultadoAstral(resultado);
-    }catch(err){
-      stage.innerHTML=`<div class="fade"><div class="qq">Algo falló en el cálculo</div>
-        <p class="qhint">${err.message||'Revisa los datos e inténtalo de nuevo.'}</p>
-        <button class="btn" onclick="quizRutaAstral()"><span>← Volver</span></button></div>`;
-    }
-  }, 1800);
-}
-
-/* ─────────────────────────────────────────────────────
-   MOTOR ASTRONÓMICO COMPACTO
-   Portado desde Mi Oráculo — efemérides reales (Moshier)
-   ───────────────────────────────────────────────────── */
-const G2R=Math.PI/180;
-const sinD=a=>Math.sin(a*G2R), cosD=a=>Math.cos(a*G2R), tanD=a=>Math.tan(a*G2R);
-const norm=a=>((a%360)+360)%360;
-const julianAst=d=>d.getTime()/86400000+2440587.5;
-const siglosAst=jd=>(jd-2451545)/36525;
-const deJulianAst=jd=>new Date((jd-2440587.5)*86400000);
-
-function offsetMinAst(fechaUTC,tz){
-  try{const dtf=new Intl.DateTimeFormat('en-US',{timeZone:tz,hour12:false,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});
-  const p=Object.fromEntries(dtf.formatToParts(fechaUTC).map(x=>[x.type,x.value]));
-  const comoLocal=Date.UTC(+p.year,+p.month-1,+p.day,+p.hour%24,+p.minute);
-  return Math.round((comoLocal-fechaUTC.getTime())/60000);}catch(e){return 0;}
-}
-function aUTCAst(y,mes,d,h,min,tz){
-  const objetivo=Date.UTC(y,mes-1,d,h,min);
-  const off=offsetMinAst(new Date(objetivo),tz);
-  return new Date(objetivo-off*60000);
-}
-function solLonAst(jd){
-  const T=siglosAst(jd),L0=280.46646+36000.76983*T,M=357.52911+35999.05029*T;
-  const C=(1.914602-0.004817*T)*sinD(M)+(0.019993-0.0001*T)*sinD(2*M)+0.000289*sinD(3*M);
-  const O=125.04-1934.136*T;
-  return norm(L0+C-0.00569-0.00478*sinD(O));
-}
-function lunaLonAst(jd){
-  const T=siglosAst(jd),T2=T*T;
-  const Lp=218.3164477+481267.88123421*T-0.0015786*T2;
-  const D=297.8501921+445267.1114034*T;
-  const M=357.5291092+35999.0502909*T;
-  const Mp=134.9633964+477198.8675055*T+0.0087414*T2;
-  const F=93.2720950+483202.0175233*T-0.0036539*T2;
-  const tabla=[[0,0,1,0,6288774],[2,0,-1,0,1274027],[2,0,0,0,658314],[0,0,2,0,213618],
-    [0,1,0,0,-185116],[0,0,0,2,-114332],[2,0,-2,0,58793],[2,-1,-1,0,57066],[2,0,1,0,53322],
-    [2,-1,0,0,45758],[0,1,-1,0,-40923],[1,0,0,0,-34720],[0,1,1,0,-30383]];
-  const E=1-0.002516*T;
-  let s=0;
-  for(const [dd,mm,mp,ff,c] of tabla){let f=c;if(Math.abs(mm)===1)f*=E;else if(Math.abs(mm)===2)f*=E*E;
-    s+=f*Math.sin((dd*D+mm*M+mp*Mp+ff*F)*G2R);}
-  s+=3958*sinD(119.75+131.849*T)+1962*sinD(Lp-F)+318*sinD(53.09+479264.290*T);
-  return norm(Lp+s/1e6+((-17.2*sinD(125.04452-1934.136261*T))/3600));
-}
-function planetaLonAst(nombre,jd){
-  const T=siglosAst(jd);
-  const datos={
-    Mercurio:[0.38709927,0.20563593,252.25032350,77.45779628,48.33076593,149472.67411175],
-    Venus:[0.72333566,0.00677672,181.97909950,131.60246718,76.67984255,58517.81538729],
-    Marte:[1.52371034,0.09339410,-4.55343205,-23.94362959,49.55953891,19140.30268499],
-    Júpiter:[5.20288700,0.04838624,34.39644051,14.72847983,100.47390909,3034.74612775],
-    Saturno:[9.53667594,0.05386179,49.95424423,92.59887831,113.66242448,1222.49362201],
-    Urano:[19.18916464,0.04725744,313.23810451,170.95427630,74.01692503,428.48202785],
-    Neptuno:[30.06992276,0.00859048,-55.12002969,44.96476227,131.78422574,218.45945325],
-  };
-  if(nombre==='Sol') return solLonAst(jd);
-  if(nombre==='Luna') return lunaLonAst(jd);
-  const d=datos[nombre];
-  if(!d) return 0;
-  const [a,e,L0,w,O,n]=d;
-  const L=norm(L0+n*T);
-  const M=norm(L-w);
-  const v=M+2*e/G2R*sinD(M)+1.25*e*e/G2R*sinD(2*M);
-  const lon=norm(v+w);
-  return lon;
-}
-function nodoLunarAst(jd){
-  const T=siglosAst(jd);
-  return norm(125.04452-1934.136261*T+0.0020708*T*T);
-}
-function signoDe(lon){return ['Aries','Tauro','Géminis','Cáncer','Leo','Virgo','Libra','Escorpio','Sagitario','Capricornio','Acuario','Piscis'][Math.floor(lon/30)%12];}
-function fmtLon(lon){const s=Math.floor(lon/30)%12,g=Math.floor(lon%30);return `${g}° ${signoDe(lon)}`;}
-
-function ascendenteAst(jd,lat,lon){
-  const T=siglosAst(jd),d=jd-2451545;
-  const gmst=norm(280.46061837+360.98564736629*d+0.000387933*T*T);
-  const eps=23.43929111+(-4680.93*T)/3600;
-  const lst=norm(gmst+lon);
-  let asc=norm(Math.atan2(Math.cos(lst*G2R),-(Math.sin(lst*G2R)*Math.cos(eps*G2R)+Math.tan(lat*G2R)*Math.sin(eps*G2R)))/G2R);
-  const mc=norm(Math.atan2(Math.sin(lst*G2R),Math.cos(lst*G2R)*Math.cos(eps*G2R))/G2R);
-  if(norm(asc-mc)>180) asc=norm(asc+180);
-  return {asc,mc};
-}
-
-/* ── SAJU compacto ── */
-const GAN_EL_A=['Madera','Madera','Fuego','Fuego','Tierra','Tierra','Metal','Metal','Agua','Agua'];
-const JI_EL_A=['Agua','Tierra','Madera','Madera','Tierra','Fuego','Fuego','Tierra','Metal','Metal','Tierra','Agua'];
-const JI_ANIMAL_A=['Rata','Buey','Tigre','Conejo','Dragón','Serpiente','Caballo','Cabra','Mono','Gallo','Perro','Cerdo'];
-const GAN_N_A=['Madera Yang','Madera Yin','Fuego Yang','Fuego Yin','Tierra Yang','Tierra Yin','Metal Yang','Metal Yin','Agua Yang','Agua Yin'];
-const GENERA_A={Madera:'Fuego',Fuego:'Tierra',Tierra:'Metal',Metal:'Agua',Agua:'Madera'};
-
-function ipchunJD(y){
-  let jd=julianAst(new Date(Date.UTC(y,1,3)));
-  for(let i=0;i<60;i++){const lo=norm(solLonAst(jd));const err=norm(315-lo+540)-180;if(Math.abs(err)<0.001)break;jd+=err/360;}
-  return jd;
-}
-function sajuCompacto(fecha,hora,lat,lon,tz,sinHora,genero){
-  const [y,m,d]=fecha.split('-').map(Number);
-  const [hh,mm]=(hora||'12:00').split(':').map(Number);
-  const utc=aUTCAst(y,m,d,hh,mm,tz);
-  const jd=julianAst(utc);
-  let anio=y; if(jd<ipchunJD(y))anio=y-1;
-  const iGanA=((anio-4)%10+10)%10, iJiA=((anio-4)%12+12)%12;
-  const T=siglosAst(jd),d2=jd-2451545;
-  const gmst=norm(280.46061837+360.98564736629*d2);
-  const jdSolar=jd+lon/360;
-  const fSolar=deJulianAst(jdSolar);
-  let horaSolar=fSolar.getUTCHours()+fSolar.getUTCMinutes()/60;
-  if(sinHora)horaSolar=12;
-  let jdnLocal=Math.floor(jdSolar+0.5);
-  if(!sinHora&&horaSolar>=23)jdnLocal+=1;
-  const iGanD=((jdnLocal+9)%10+10)%10, iJiD=((jdnLocal+1)%12+12)%12;
-  const solAhora=solLonAst(jd);
-  const sector=Math.floor(norm(solAhora-315)/30);
-  const iJiM=(sector+2)%12, iGanM=(((iGanA%5)*2+sector+2)%10+10)%10;
-  let iJiH=null,iGanH=null;
-  if(!sinHora){iJiH=Math.floor((norm(horaSolar*15)+15)/30)%12;iGanH=(((iGanD%5)*2+iJiH)%10+10)%10;}
-  const el={Madera:0,Fuego:0,Tierra:0,Metal:0,Agua:0};
-  const pilares=[{g:iGanA,j:iJiA},{g:iGanD,j:iJiD},{g:iGanM,j:iJiM}];
-  if(!sinHora&&iGanH!==null)pilares.push({g:iGanH,j:iJiH});
-  pilares.forEach(p=>{el[GAN_EL_A[p.g]]+=12;el[JI_EL_A[p.j]]+=6;});
-  const total=Object.values(el).reduce((a,b)=>a+b,0)||1;
-  const elPct=Object.fromEntries(Object.entries(el).map(([k,v])=>[k,Math.round(v/total*100)]));
-  const elDia=GAN_EL_A[iGanD];
-  const genera=GENERA_A[elDia]||'Fuego';
-  let apoyo=(elPct[elDia]||0)+(elPct[genera]||0);
-  const elMes=[GAN_EL_A[iGanM],JI_EL_A[iJiM]];
-  if(elMes.includes(elDia)||elMes.includes(genera))apoyo+=12;
-  apoyo=Math.min(100,apoyo);
-  const fuerza=apoyo>=55?'fuerte (신강)':apoyo<=32?'débil (신약)':'equilibrado (중화)';
-  const elDominante=Object.entries(elPct).sort(([,a],[,b])=>b-a)[0][0];
-  /* daeun simplificado */
-  const esVaron=genero==='M', yangA=iGanA%2===0;
-  const daeunDir=(esVaron===yangA)?1:-1;
-  const jdHoy=julianAst(new Date());
-  let daeunAnio=anio;
-  const daeunPilares=[];
-  for(let i=0;i<12;i++){
-    const iGanDae=((iGanM+daeunDir*(i+1))%10+10)%10;
-    const iJiDae=((iJiM+daeunDir*(i+1))%12+12)%12;
-    const edadInicio=i*10+3;
-    const fechaInicio=new Date(Date.UTC(y+edadInicio,m-1,d));
-    daeunPilares.push({g:iGanDae,j:iJiDae,ganNom:GAN_N_A[iGanDae],jiEl:JI_EL_A[iJiDae],animal:JI_ANIMAL_A[iJiDae],desde:fechaInicio});
-  }
-  const hoy=new Date();
-  const daeunActual=daeunPilares.find((dp,i)=>{
-    const sig=daeunPilares[i+1];return dp.desde<=hoy&&(!sig||sig.desde>hoy);
-  })||daeunPilares[0];
-  return {elDia,elDominante,elPct,fuerza,apoyo,ganDia:GAN_N_A[iGanD],jiAnimal:JI_ANIMAL_A[iJiD],daeunActual,daeunPilares};
-}
-
-/* ── JYOTISH compacto ── */
-const RASI_A=['Aries','Tauro','Géminis','Cáncer','Leo','Virgo','Libra','Escorpio','Sagitario','Capricornio','Acuario','Piscis'];
-const RASI_SENOR_A=['Marte','Venus','Mercurio','Luna','Sol','Mercurio','Venus','Marte','Júpiter','Saturno','Saturno','Júpiter'];
-const NAKSHATRA_A=['Ashwini','Bharani','Krittika','Rohini','Mrigashira','Ardra','Punarvasu','Pushya','Ashlesha','Magha','Purva Phalguni','Uttara Phalguni','Hasta','Chitra','Swati','Vishakha','Anuradha','Jyeshtha','Mula','Purva Ashadha','Uttara Ashadha','Shravana','Dhanishta','Shatabhisha','Purva Bhadrapada','Uttara Bhadrapada','Revati'];
-const NAKSHATRA_SENOR_A=['Ketu','Venus','Sol','Luna','Marte','Rahu','Júpiter','Saturno','Mercurio','Ketu','Venus','Sol','Luna','Marte','Rahu','Júpiter','Saturno','Mercurio','Ketu','Venus','Sol','Luna','Marte','Rahu','Júpiter','Saturno','Mercurio'];
-const DASHA_A=[['Ketu',7],['Venus',20],['Sol',6],['Luna',10],['Marte',7],['Rahu',18],['Júpiter',16],['Saturno',19],['Mercurio',17]];
-
-function ayanamsaAst(jd){return 23.85+1.396*(jd-2451545)/36525;}
-function nakshatraDeAst(lonSid){
-  const span=360/27,i=Math.floor(lonSid/span);
-  const recorrido=(lonSid-i*span)/span;
-  return{i,nombre:NAKSHATRA_A[i],senor:NAKSHATRA_SENOR_A[i],recorrido};
-}
-function dashaActualAst(lunaLonSid,nacimiento){
-  const nak=nakshatraDeAst(lunaLonSid);
-  let idx=DASHA_A.findIndex(d=>d[0]===nak.senor);
-  const MS=365.2425*86400000;
-  const restante=DASHA_A[idx][1]*(1-nak.recorrido);
-  let t=nacimiento.getTime()-(DASHA_A[idx][1]-restante)*MS;
-  const hoy=Date.now();
-  for(let i=0;i<9;i++){
-    const [senor,dur]=DASHA_A[(idx+i)%9];
-    const hasta=t+dur*MS;
-    if(t<=hoy&&hoy<hasta){
-      const sub=[];let ts=t;
-      for(let k=0;k<9;k++){const [s2,d2]=DASHA_A[(idx+i+k)%9];const dur2=dur*d2/120;sub.push({senor:s2,desde:new Date(ts),hasta:new Date(ts+dur2*MS)});ts+=dur2*MS;}
-      const antar=sub.find(a=>a.desde.getTime()<=hoy&&hoy<a.hasta.getTime())||sub[0];
-      return{maha:{senor,desde:new Date(t),hasta:new Date(hasta)},antar};
-    }
-    t=hasta;
-  }
-  return null;
-}
-function jyotishCompacto(fecha,hora,lat,lon,tz,sinHora){
-  const [y,m,d]=fecha.split('-').map(Number);
-  const [hh,mm]=(hora||'12:00').split(':').map(Number);
-  const utc=aUTCAst(y,m,d,hh,mm,tz);
-  const jd=julianAst(utc);
-  const aya=ayanamsaAst(jd);
-  const sid=l=>norm(l-aya);
-  const solSid=sid(solLonAst(jd));
-  const lunaSid=sid(lunaLonAst(jd));
-  const marti=sid(planetaLonAst('Marte',jd));
-  const jupi=sid(planetaLonAst('Júpiter',jd));
-  const satu=sid(planetaLonAst('Saturno',jd));
-  const venu=sid(planetaLonAst('Venus',jd));
-  const merc=sid(planetaLonAst('Mercurio',jd));
-  const rahuSid=sid(nodoLunarAst(jd));
-  const rasiSol=RASI_A[Math.floor(solSid/30)];
-  const rasiLuna=RASI_A[Math.floor(lunaSid/30)];
-  const nak=nakshatraDeAst(lunaSid);
-  const dasha=dashaActualAst(lunaSid,utc);
-  let lagna=null;
-  if(!sinHora){const{asc}=ascendenteAst(jd,lat,lon);lagna={sid:sid(asc),rasi:RASI_A[Math.floor(sid(asc)/30)]};}
-  return{rasiSol,rasiLuna,nak,dasha,lagna,planetas:{Sol:solSid,Luna:lunaSid,Marte:marti,Júpiter:jupi,Saturno:satu,Venus:venu,Mercurio:merc,Rahu:rahuSid}};
-}
-
-/* ── CARTA ASTRAL compacta ── */
-function cartaAstralCompacta(fecha,hora,lat,lon,tz,sinHora){
-  const [y,m,d]=fecha.split('-').map(Number);
-  const [hh,mm]=(hora||'12:00').split(':').map(Number);
-  const utc=aUTCAst(y,m,d,hh,mm,tz);
-  const jd=julianAst(utc);
-  const signoSol=signoDe(solLonAst(jd));
-  const signoLuna=signoDe(lunaLonAst(jd));
-  const signoMarte=signoDe(planetaLonAst('Marte',jd));
-  const signoVenus=signoDe(planetaLonAst('Venus',jd));
-  const signoMercurio=signoDe(planetaLonAst('Mercurio',jd));
-  const signoJupiter=signoDe(planetaLonAst('Júpiter',jd));
-  const signoSaturno=signoDe(planetaLonAst('Saturno',jd));
-  let asc=null;
-  if(!sinHora){const{asc:a}=ascendenteAst(jd,lat,lon);asc=signoDe(a);}
-  return{signoSol,signoLuna,signoMarte,signoVenus,signoMercurio,signoJupiter,signoSaturno,asc};
-}
-
-/* ── ALGORITMO DE PUNTUACIÓN ── */
-/* Planetas y signos que resuenan con cada arcano.
-   Pesos: señorío principal=3, señorío secundario=2, afinidad=1 */
-const ARCANO_PESOS = {
-  /* FEMENINOS */
-  emperatriz:{planetas:{Venus:3,Luna:2,Júpiter:1},signos:{Tauro:3,Libra:2,Cáncer:1,Piscis:1},
-    elemSaju:{Tierra:2,Madera:1},elementoTriang:'tierra',
-    dashaPts:{Venus:3,Luna:2,Júpiter:1},desc:'Venus como fuerza creativa y receptiva'},
-  estrella:{planetas:{Júpiter:3,Venus:2,Saturno:1},signos:{Acuario:3,Piscis:2,Libra:1},
-    elemSaju:{Agua:3,Madera:1},elementoTriang:'aire',
-    dashaPts:{Júpiter:3,Venus:2,Saturno:1},desc:'Júpiter–Venus: la confianza que vuelve'},
-  fuerza:{planetas:{Sol:3,Marte:2,Venus:1},signos:{Leo:3,Sagitario:2,Aries:1},
-    elemSaju:{Fuego:2,Tierra:1},elementoTriang:'fuego',
-    dashaPts:{Sol:3,Marte:2,Júpiter:1},desc:'Sol como centro y coraje sereno'},
-  sacerdotisa:{planetas:{Luna:3,Neptuno:2,Mercurio:1},signos:{Cáncer:3,Escorpio:2,Piscis:2,Virgo:1},
-    elemSaju:{Agua:3,Metal:1},elementoTriang:'tierra',
-    dashaPts:{Luna:3,Mercurio:2,Ketu:2},desc:'Luna–Ketu: escucha interior'},
-  /* MASCULINOS */
-  mago:{planetas:{Mercurio:3,Sol:2,Marte:1},signos:{Géminis:3,Virgo:2,Aries:2,Acuario:1},
-    elemSaju:{Madera:3,Fuego:2},elementoTriang:'aire',
-    dashaPts:{Mercurio:3,Sol:2,Marte:1},desc:'Mercurio: intención hecha acto'},
-  emperador:{planetas:{Marte:3,Saturno:2,Sol:1},signos:{Aries:3,Capricornio:2,Leo:1,Escorpio:2},
-    elemSaju:{Metal:3,Fuego:1},elementoTriang:'fuego',
-    dashaPts:{Marte:3,Saturno:2,Sol:1},desc:'Marte–Saturno: orden y límites'},
-  ermitano:{planetas:{Mercurio:3,Saturno:2,Júpiter:1},signos:{Virgo:3,Capricornio:2,Acuario:1,Géminis:1},
-    elemSaju:{Tierra:2,Metal:2},elementoTriang:'tierra',
-    dashaPts:{Mercurio:3,Saturno:2,Ketu:2},desc:'Mercurio–Saturno: claridad por retiro'},
-  diablo:{planetas:{Saturno:3,Rahu:2,Venus:1},signos:{Capricornio:3,Escorpio:3,Tauro:1,Acuario:1},
-    elemSaju:{Tierra:2,Agua:2},elementoTriang:'tierra',
-    dashaPts:{Saturno:3,Rahu:3,Venus:1},desc:'Saturno–Rahu: sombra nombrada'},
-  justicia:{planetas:{Venus:3,Saturno:2,Mercurio:1},signos:{Libra:3,Acuario:2,Capricornio:1,Virgo:1},
-    elemSaju:{Metal:3,Madera:1},elementoTriang:'aire',
-    dashaPts:{Saturno:3,Venus:2,Mercurio:1},desc:'Saturno–Venus: la verdad en equilibrio'},
-  colgado:{planetas:{Luna:2,Júpiter:2,Saturno:2},signos:{Piscis:3,Cáncer:2,Virgo:1},
-    elemSaju:{Agua:3},elementoTriang:'agua',
-    dashaPts:{Ketu:3,Saturno:2,Luna:1},desc:'Ketu: la pausa que cambia la mirada'},
-  muerte:{planetas:{Marte:3,Saturno:2,Luna:1},signos:{Escorpio:3,Capricornio:1,Cáncer:1},
-    elemSaju:{Agua:3,Metal:1},elementoTriang:'agua',
-    dashaPts:{Ketu:3,Marte:2,Saturno:2},desc:'Escorpio: la forma que termina'},
-  torre:{planetas:{Marte:3,Saturno:1,Sol:1},signos:{Aries:3,Escorpio:2,Capricornio:1},
-    elemSaju:{Fuego:3,Metal:2},elementoTriang:'fuego',
-    dashaPts:{Marte:3,Rahu:2,Ketu:1},desc:'Marte: la estructura que se rompe'},
-  sol:{planetas:{Sol:3,Júpiter:2,Venus:1},signos:{Leo:3,Aries:1,Sagitario:1},
-    elemSaju:{Fuego:3,Madera:1},elementoTriang:'fuego',
-    dashaPts:{Sol:3,Júpiter:2,Venus:1},desc:'Sol en Leo: la claridad que se celebra'},
-  juicio:{planetas:{Sol:2,Marte:2,Saturno:2},signos:{Escorpio:3,Acuario:2,Leo:1},
-    elemSaju:{Fuego:2,Metal:2},elementoTriang:'fuego',
-    dashaPts:{Ketu:3,Marte:2,Sol:1},desc:'Ketu–Marte: el llamado que reordena la historia'},
-  loco:{planetas:{Mercurio:3,Júpiter:2,Marte:1},signos:{Acuario:3,Sagitario:2,Géminis:2,Aries:1},
-    elemSaju:{Madera:3,Fuego:1},elementoTriang:'aire',
-    dashaPts:{Rahu:3,Mercurio:2,Júpiter:1},desc:'Rahu–Mercurio: el salto sin garantías'},
-  hierofante:{planetas:{Júpiter:3,Saturno:2,Venus:1},signos:{Tauro:3,Sagitario:2,Capricornio:1,Virgo:1},
-    elemSaju:{Tierra:3,Metal:1},elementoTriang:'tierra',
-    dashaPts:{Júpiter:3,Saturno:2},desc:'Júpiter en Tauro: la enseñanza que se encarna'},
-  enamorados:{planetas:{Venus:3,Mercurio:2,Luna:1},signos:{Géminis:3,Libra:3,Tauro:1},
-    elemSaju:{Madera:2,Agua:2},elementoTriang:'aire',
-    dashaPts:{Venus:3,Mercurio:2},desc:'Venus–Mercurio: la elección coherente'},
-  carro:{planetas:{Marte:3,Luna:2,Sol:1},signos:{Cáncer:3,Aries:2,Leo:1,Sagitario:1},
-    elemSaju:{Fuego:3,Agua:1},elementoTriang:'fuego',
-    dashaPts:{Marte:3,Luna:2,Sol:1},desc:'Marte–Luna: la voluntad que avanza con dirección'},
-  rueda:{planetas:{Júpiter:3,Saturno:1,Marte:1},signos:{Sagitario:3,Piscis:2,Acuario:1},
-    elemSaju:{Fuego:2,Agua:2},elementoTriang:'fuego',
-    dashaPts:{Júpiter:3,Rahu:2,Ketu:1},desc:'Júpiter: el giro que no controlas'},
-  templanza:{planetas:{Júpiter:3,Mercurio:2,Venus:1},signos:{Sagitario:3,Virgo:2,Libra:1},
-    elemSaju:{Agua:2,Tierra:2},elementoTriang:'agua',
-    dashaPts:{Júpiter:3,Mercurio:2},desc:'Júpiter: la medida que reconcilia'},
-  luna:{planetas:{Luna:3,Júpiter:1,Saturno:1},signos:{Piscis:3,Cáncer:3,Escorpio:1},
-    elemSaju:{Agua:3},elementoTriang:'agua',
-    dashaPts:{Luna:3,Ketu:2,Rahu:1},desc:'Luna en Piscis: la intuición en la niebla'},
-  mundo:{planetas:{Saturno:3,Júpiter:2,Sol:1},signos:{Capricornio:3,Virgo:2,Tauro:1,Libra:1},
-    elemSaju:{Tierra:3,Metal:1},elementoTriang:'tierra',
-    dashaPts:{Saturno:3,Júpiter:2},desc:'Saturno: el ciclo que se completa'}
-};
-
-/* ═══════════ EL MOMENTO DE LA CONSULTA ═══════════
-   La carta natal dice quién eres; el cielo de hoy dice dónde estás parado.
-   Se detecta la fecha, la hora y la zona del navegador de quien consulta,
-   y la longitud se deduce de su desfase horario real. Nunca pesa más que
-   la carta natal: solo inclina la balanza cuando dos arcanos empatan. */
-function momentoConsulta(){
-  const now=new Date();
-  let tz='UTC';
-  try{ tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'UTC'; }catch(_){}
-  const offMin=-now.getTimezoneOffset();
-  const lon=Math.max(-180,Math.min(180,offMin/4));
-  const p=n=>String(n).padStart(2,'0');
-  return{
-    fecha:`${now.getFullYear()}-${p(now.getMonth()+1)}-${p(now.getDate())}`,
-    hora:`${p(now.getHours())}:${p(now.getMinutes())}`,
-    tz, lat:0, lon, now
-  };
-}
-let _cieloHoy=null;
-function cartaDeHoy(){
-  if(_cieloHoy) return _cieloHoy;
-  const m=momentoConsulta();
-  let carta=null;
-  try{ carta=cartaAstralCompacta(m.fecha,m.hora,m.lat,m.lon,m.tz,true); }catch(_){}
-  _cieloHoy={m,carta};
-  return _cieloHoy;
-}
-/* Pesos del motor. La carta natal define el arquetipo y no cambia nunca.
-   La energía elegida modula con fuerza, porque es una decisión consciente.
-   El cielo del momento solo desempata: nunca debe decidir el arcano por sí solo. */
-const ENERGIAS={"claridad": {"label": "Claridad y dirección", "sub": "Saber hacia dónde y decidir", "a": {"mago": 3, "carro": 3, "sol": 3, "justicia": 2, "emperador": 2, "ermitano": 1}}, "fuerza": {"label": "Fuerza y coraje", "sub": "Sostener lo que cuesta", "a": {"fuerza": 3, "torre": 3, "emperador": 2, "carro": 2, "diablo": 2, "juicio": 1}}, "calma": {"label": "Calma y escucha", "sub": "Bajar el ruido y esperar", "a": {"sacerdotisa": 3, "ermitano": 3, "colgado": 3, "luna": 2, "templanza": 2, "muerte": 1}}, "cambio": {"label": "Cierre y transformación", "sub": "Soltar lo que ya terminó", "a": {"muerte": 3, "torre": 3, "juicio": 3, "rueda": 2, "colgado": 2, "diablo": 1}}, "comienzo": {"label": "Apertura y comienzo", "sub": "Empezar algo nuevo", "a": {"loco": 3, "estrella": 3, "rueda": 3, "mago": 2, "sol": 2, "carro": 1}}, "vinculo": {"label": "Vínculo y creación", "sub": "Amor, cuerpo, algo que nace", "a": {"enamorados": 3, "emperatriz": 3, "estrella": 2, "fuerza": 2, "hierofante": 1, "luna": 1}}, "sentido": {"label": "Integración y sentido", "sub": "Cerrar el ciclo y comprenderlo", "a": {"mundo": 3, "templanza": 3, "hierofante": 3, "juicio": 2, "ermitano": 2, "justicia": 1}}};
-let AST_ENERGIA=null;
-function puntuarEnergia(k){const e=ENERGIAS[AST_ENERGIA];return e&&e.a[k]?e.a[k]:0;}
-const PESO_ENERGIA=0.34;
-const PESO_TRANSITO=0.10;
-function puntuarTransito(k,t){
-  const pesos=ARCANO_PESOS[k]; if(!pesos||!t) return 0;
-  let pts=0;
-  const plans={Sol:t.signoSol,Luna:t.signoLuna,Venus:t.signoVenus,Marte:t.signoMarte,
-    Mercurio:t.signoMercurio,Júpiter:t.signoJupiter,Saturno:t.signoSaturno};
-  for(const[pl,pw] of Object.entries(pesos.planetas)){
-    const sg=plans[pl];
-    if(sg&&pesos.signos[sg]) pts+=pw*1.2;
-  }
-  if(t.signoSol&&pesos.signos[t.signoSol])  pts+=pesos.signos[t.signoSol]*1.8;
-  if(t.signoLuna&&pesos.signos[t.signoLuna])pts+=pesos.signos[t.signoLuna]*1.3;
-  /* Se normaliza igual que la puntuación natal. Sin esto el tránsito llegaba
-     sin escala y podía decidir el arcano por sí solo, cambiándolo cada día. */
-  if(pesos._n===undefined){
-    const suma=o=>Object.values(o||{}).reduce((a,b)=>a+b,0);
-    pesos._n=suma(pesos.planetas)+suma(pesos.signos)+suma(pesos.elemSaju)+suma(pesos.dashaPts);
-  }
-  return pesos._n?pts/pesos._n*10:pts;
-}
-
-function puntuarArcano(k, carta, saju, jyo, sexo){
-  const pesos=ARCANO_PESOS[k]; if(!pesos)return 0;
-  let pts=0;
-  /* Carta astral occidental */
-  const plansCarta={Sol:carta.signoSol,Luna:carta.signoLuna,Venus:carta.signoVenus,
-    Marte:carta.signoMarte,Mercurio:carta.signoMercurio,Júpiter:carta.signoJupiter,Saturno:carta.signoSaturno};
-  for(const[pl,pw] of Object.entries(pesos.planetas)){
-    const signo=plansCarta[pl];
-    if(!signo)continue;
-    /* planeta en signo de dignidad da extra */
-    if(pesos.signos[signo]){pts+=pw*1.5;}else{pts+=pw*0.4;}
-  }
-  for(const[signo,pw] of Object.entries(pesos.signos)){
-    if(carta.signoSol===signo)pts+=pw*2;
-    if(carta.signoLuna===signo)pts+=pw*1.5;
-    if(carta.signoMarte===signo||carta.signoVenus===signo||carta.signoMercurio===signo)pts+=pw*0.8;
-    if(carta.asc===signo)pts+=pw*2.5;
-  }
-  /* Saju */
-  if(saju&&pesos.elemSaju){
-    const elDia=saju.elDia,elDom=saju.elDominante;
-    if(pesos.elemSaju[elDia])pts+=pesos.elemSaju[elDia]*3;
-    if(pesos.elemSaju[elDom])pts+=pesos.elemSaju[elDom]*2;
-  }
-  /* Jyotish dasha */
-  if(jyo&&jyo.dasha&&pesos.dashaPts){
-    const maha=jyo.dasha.maha?.senor, antar=jyo.dasha.antar?.senor;
-    if(maha&&pesos.dashaPts[maha])pts+=pesos.dashaPts[maha]*3;
-    if(antar&&pesos.dashaPts[antar])pts+=pesos.dashaPts[antar]*2;
-  }
-  /* Nakshatra */
-  if(jyo&&jyo.nak){
-    const sensores={
-      Ketu:{sacerdotisa:2,ermitano:2,colgado:3,muerte:2,juicio:2,luna:1},
-      Venus:{emperatriz:3,diablo:1,enamorados:3,justicia:2,hierofante:1},
-      Sol:{fuerza:2,mago:1,emperador:1,sol:3,carro:1,juicio:1},
-      Luna:{sacerdotisa:2,emperatriz:1,luna:3,carro:2,colgado:1},
-      Marte:{emperador:2,fuerza:1,torre:3,muerte:2,carro:2,juicio:1},
-      Rahu:{diablo:2,estrella:1,loco:3,rueda:2,torre:1},
-      Júpiter:{estrella:2,emperatriz:1,ermitano:1,hierofante:3,templanza:3,rueda:2,mundo:1},
-      Saturno:{estrella:2,diablo:2,ermitano:2,mundo:3,justicia:2,colgado:1},
-      Mercurio:{mago:2,ermitano:2,loco:2,enamorados:2,templanza:1}};
-    const s=sensores[jyo.nak.senor];
-    if(s&&s[k])pts+=s[k]*2;
-  }
-  /* Normalizamos por la amplitud de lo que cada arcano reclama: sin esto, los
-     arcanos con más signos y planetas declarados ganarían solo por cubrir más cielo. */
-  if(pesos._n===undefined){
-    const suma=o=>Object.values(o||{}).reduce((a,b)=>a+b,0);
-    pesos._n=suma(pesos.planetas)+suma(pesos.signos)+suma(pesos.elemSaju)+suma(pesos.dashaPts);
-  }
-  return pesos._n?pts/pesos._n*10:pts;
-}
-
-function calcularArcano(fecha,hora,coords,sinHora,sexo){
-  const [lat,lon,tz]=coords;
-  const carta=cartaAstralCompacta(fecha,hora,lat,lon,tz,sinHora);
-  const saju=sajuCompacto(fecha,hora,lat,lon,tz,sinHora,sexo);
-  const jyo=jyotishCompacto(fecha,hora,lat,lon,tz,sinHora);
-
-  /* Compiten solo los arcanos de la línea elegida: los de ese género más los que no
-     tienen género y Los Enamorados. Nadie recibe una esencia que no va a usar.
-     El sexo alimenta además el cálculo del daeun en Saju. */
-  const hoy0=cartaDeHoy();
-  /* El arquetipo no se filtra por el sexo al nacer: se filtra por la LÍNEA DE ESENCIA que
-     la persona ha dicho que quiere llevar, y puede pedir las veintidós. */
-  const POOL=(AST_LINEA&&AST_LINEA!=='todas'&&LINEA[AST_LINEA]&&LINEA[AST_LINEA].length)?LINEA[AST_LINEA]:TODOS;
-  const scores=POOL.map(k=>{
-    const natal=puntuarArcano(k,carta,saju,jyo,sexo),
-          energia=puntuarEnergia(k),
-          transito=puntuarTransito(k,hoy0.carta);
-    return {k,natal,energia,transito,pts:natal+PESO_ENERGIA*energia*3.3+PESO_TRANSITO*transito};
-  });
-  scores.sort((a,b)=>b.pts-a.pts);
-  const ganador=scores[0].k;
-
-  /* Razones principales */
-  const razones=[];
-  const pesos=ARCANO_PESOS[ganador];
-  if(carta.signoSol&&pesos.signos[carta.signoSol]>=2)
-    razones.push(`Tu Sol en <b>${carta.signoSol}</b> resuena con la energía de ${pesos.desc}.`);
-  if(carta.asc&&pesos.signos[carta.asc]>=2)
-    razones.push(`Tu Ascendente en <b>${carta.asc}</b> amplifica la frecuencia de este arcano.`);
-  if(carta.signoLuna&&pesos.signos[carta.signoLuna]>=2)
-    razones.push(`Tu Luna en <b>${carta.signoLuna}</b> sintoniza con la receptividad de este arcano.`);
-  if(saju&&pesos.elemSaju[saju.elDia])
-    razones.push(`Tu elemento del día en Saju es <b>${saju.ganDia}</b> — ${saju.elDia}, el eje del arcano.`);
-  if(jyo?.dasha?.maha&&pesos.dashaPts[jyo.dasha.maha.senor]>=2)
-    razones.push(`Tu mahadasha activo es <b>${jyo.dasha.maha.senor}</b>, planeta regente de esta energía.`);
-  if(jyo?.nak)
-    razones.push(`Tu Janma Nakshatra es <b>${jyo.nak.nombre}</b>, regida por ${jyo.nak.senor}.`);
-  if(AST_ENERGIA&&ENERGIAS[AST_ENERGIA]&&ENERGIAS[AST_ENERGIA].a[ganador])
-    razones.push(`Y coincide con la energía que pediste llevar: <b>${ENERGIAS[AST_ENERGIA].label.toLowerCase()}</b>.`);
-  if(hoy0.carta&&(pesos.signos[hoy0.carta.signoSol]||pesos.signos[hoy0.carta.signoLuna]))
-    razones.push(`Hoy el cielo acompaña: Sol en <b>${hoy0.carta.signoSol}</b> y Luna en <b>${hoy0.carta.signoLuna}</b> en el momento de tu consulta.`);
-  while(razones.length<2) razones.push(`La combinación de tus posiciones planetarias apunta a ${pesos.desc}.`);
-
-  /* Periodo 3–6 meses */
-  const hoy=new Date();
-  let periodoTxt='', periodoDetalle='';
-  if(jyo?.dasha?.antar){
-    const a=jyo.dasha.antar;
-    const fin=new Date(Math.min(a.hasta.getTime(), hoy.getTime()+180*86400000));
-    const mes=d=>d.toLocaleDateString('es-MX',{month:'long',year:'numeric'});
-    periodoTxt=`${mes(hoy)} — ${mes(fin)}`;
-    periodoDetalle=`Subperiodo de ${a.senor} dentro del gran periodo de ${jyo.dasha.maha.senor}.`;
-  } else if(saju?.daeunActual){
-    periodoTxt='Ciclo Daeun actual';
-    periodoDetalle=`Tu ciclo de diez años: ${saju.daeunActual.ganNom}, sobre ${saju.daeunActual.animal}.`;
-  }
-
-  /* Línea de tiempo los tres relojes */
-  const tres=[];
-  if(!sinHora&&carta.asc) tres.push({sys:'CARTA ASTRAL',per:`Ascendente ${carta.asc} · Sol ${carta.signoSol}`,det:`Luna en ${carta.signoLuna} · Venus en ${carta.signoVenus}`,plts:`Saturno ${carta.signoSaturno} · Júpiter ${carta.signoJupiter}`});
-  else tres.push({sys:'CARTA ASTRAL',per:`Sol en ${carta.signoSol}`,det:`Luna en ${carta.signoLuna} · Venus en ${carta.signoVenus}`,plts:`Saturno ${carta.signoSaturno} · Júpiter ${carta.signoJupiter}`});
-  if(saju) tres.push({sys:'SAJU (KOREA)',per:`${saju.ganDia} — ${saju.elDia} ${saju.apoyo>=55?'Yang':'Yin'}`,det:`Elemento dominante: ${saju.elDominante} (${saju.elPct[saju.elDominante]}%) · ${saju.fuerza}`,plts:saju.daeunActual?`Daeun: ${saju.daeunActual.ganNom} · ${saju.daeunActual.animal}`:''});
-  if(jyo) tres.push({sys:'JYOTISH (INDIA)',per:`Sol en ${jyo.rasiSol} · Luna en ${jyo.rasiLuna}`,det:`Nakshatra: ${jyo.nak.nombre} (regida por ${jyo.nak.senor})`,plts:jyo.dasha?`Mahadasha: ${jyo.dasha.maha.senor} · Antardasha: ${jyo.dasha.antar?.senor||'—'}`:'Dasha calculando...'});
-
-  /* El cuarto reloj: el instante de la consulta */
-  if(hoy0.carta){
-    const fmt=hoy0.m.now.toLocaleString('es-MX',{weekday:'long',day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'});
-    tres.push({sys:'EL MOMENTO DE TU CONSULTA',
-      per:`Sol en ${hoy0.carta.signoSol} · Luna en ${hoy0.carta.signoLuna}`,
-      det:fmt.charAt(0).toUpperCase()+fmt.slice(1),
-      plts:`Zona horaria detectada: ${hoy0.m.tz}`});
-  }
-  return{k:ganador,scores,razones,carta,saju,jyo,tres,periodoTxt,periodoDetalle,momento:hoy0};
-}
-
-/* ── Pantalla de resultado astral ── */
-function mostrarResultadoAstral(res){
-  const{k,razones,tres,periodoTxt,periodoDetalle,scores}=res;
-  const tresHTML=tres.map(t=>`
-    <div class="reloj-item">
-      <div class="reloj-sys">${t.sys}</div>
-      <div class="reloj-per">${t.per}</div>
-      ${t.det?`<div class="reloj-det">${t.det}</div>`:''}
-      ${t.plts?`<div class="reloj-plts">${t.plts}</div>`:''}
-    </div>`).join('');
-  const razonesHTML=razones.slice(0,3).map(r=>`<div class="ast-why-item">${r}</div>`).join('');
-
-  const extra=`
-    ${periodoTxt?`<div class="ast-periodo">TU PERIODO DE RESONANCIA<b>${periodoTxt}</b>${periodoDetalle}</div>`:''}
-    <div class="ast-why">
-      <div class="ast-why-t">POR QUÉ ESTE ARCANO</div>
-      ${razonesHTML}
-    </div>
-    <div class="relojes-wrap">
-      <div class="relojes-titulo">LOS RELOJES QUE TE MIDEN</div>
-      ${tresHTML}
-    </div>
-    <div class="ast-tarot-note">
-      Esta propuesta cruza una estimación de tus posiciones astrales con la energía que has pedido llevar, mediante una ponderación simbólica propia de OCTAN. Con los mismos datos y la misma energía te dará siempre el mismo arcano: el cielo del día solo desempata cuando dos quedan igualados. No es un cálculo reconocido dentro de la astrología occidental, del Saju ni del Jyotish: es nuestra lectura de esas correspondencias. Una lectura presencial de tarot llega más lejos. Tómalo como punto de partida para explorar, no como una sentencia sobre quién eres.
-    </div>`;
-
-  renderResultado(k,{
-    label:'EL ARCANO QUE TE PROPONEMOS EXPLORAR HOY',
-    sub:`MÉTODO SIMBÓLICO OCTAN${AST_ENERGIA?' · '+ENERGIAS[AST_ENERGIA].label.toUpperCase():''}`,
-    alts:scores.slice(1,4).map(x=>x.k),
-    extra,
-    back:'quizStart()'
-  });
-}
 
 quizStart();
 
