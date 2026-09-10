@@ -347,6 +347,52 @@ nav.stuck{padding:9px clamp(16px,4vw,42px);padding-top:calc(9px + env(safe-area-
 .notify.sent #nf-form{display:none}
 .notify.sent .ty{display:block}
 
+/* ---------- PORTADA DE LLEGADA ---------- */
+.llegada[hidden]{display:none!important}   /* display:flex anula el atributo hidden:
+   sin esta línea la sección vacía ocupaba una pantalla entera de negro sobre el hero */
+.llegada{min-height:100svh;min-height:100dvh;display:flex;align-items:center;justify-content:center;
+  padding:clamp(80px,12vh,130px) clamp(18px,5vw,40px) clamp(48px,8vh,80px);position:relative;
+  background:radial-gradient(120% 80% at 50% 0%,var(--ink-3) 0%,var(--ink) 62%)}
+.lleg-in{display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:clamp(28px,5vw,64px);
+  align-items:center;width:var(--shell)}
+.lleg-art{position:relative}
+.lleg-art .frame{position:relative;max-width:330px;margin-inline:auto}
+.lleg-art img{width:100%;aspect-ratio:2/3;object-fit:cover;display:block;
+  border:1px solid var(--gold-dim);box-shadow:0 30px 90px -30px rgba(0,0,0,.9),0 0 60px -20px rgba(200,168,126,.22)}
+.lleg-halo{position:absolute;inset:-14%;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(200,168,126,.16),transparent 62%);filter:blur(22px)}
+.lleg-eye{font-family:'Cormorant SC',serif;font-weight:600;font-size:11px;letter-spacing:.32em;color:var(--label);margin-bottom:14px}
+.lleg-n{font-family:'Bodoni Moda',serif;font-weight:700;line-height:1.03;
+  font-size:clamp(38px,6.6vw,74px);color:var(--vellum);margin-bottom:6px}
+.lleg-num{font-family:'Cormorant SC',serif;font-size:12px;letter-spacing:.3em;color:var(--gold-dim);margin-bottom:20px}
+.lleg-f{font-family:'EB Garamond',serif;font-style:italic;font-size:clamp(18px,2.3vw,24px);
+  line-height:1.55;color:var(--gold-hi);border-left:1px solid var(--gold-dim);padding-left:18px;margin-bottom:20px}
+.lleg-a{font-size:16px;line-height:1.78;color:var(--txt);margin-bottom:26px;max-width:56ch}
+.lleg-meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:26px;
+  font-family:'Cormorant SC',serif;font-size:10.5px;letter-spacing:.2em;color:var(--gold-dim)}
+.lleg-meta i{font-style:normal;opacity:.4}
+.lleg-cta{display:flex;gap:11px;flex-wrap:wrap}
+.lleg-cta .btn{flex:0 1 auto}
+.lleg-down{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);text-align:center;
+  font-family:'Cormorant SC',serif;font-size:10px;letter-spacing:.28em;color:var(--gold-dim);
+  animation:respira 3.4s var(--ease) infinite}
+.lleg-down:hover{color:var(--gold-hi)}
+@keyframes respira{0%,100%{opacity:.45;transform:translate(-50%,0)}50%{opacity:1;transform:translate(-50%,5px)}}
+@media(max-width:820px){
+  .lleg-in{grid-template-columns:1fr;gap:26px;text-align:center}
+  .lleg-art .frame{max-width:212px}
+  .lleg-f{border-left:none;border-top:1px solid var(--gold-dim);padding:16px 0 0;margin-inline:auto;max-width:44ch}
+  .lleg-a{margin-inline:auto}
+  .lleg-meta,.lleg-cta{justify-content:center}
+  .lleg-cta .btn{width:100%;text-align:center}
+}
+
+/* ---------- COMPARTIR ---------- */
+.sheet-share{margin-top:22px}
+.sheet-share button{font-family:'Cormorant SC',serif;font-weight:600;font-size:10.5px;letter-spacing:.2em;
+  color:var(--gold-dim);border:1px dashed var(--gold-dim);padding:10px 15px;transition:.35s var(--ease)}
+.sheet-share button:hover{color:var(--ink);background:var(--gold);border-color:var(--gold);border-style:solid}
+
 /* ---------- TÁCTIL Y ZONAS SEGURAS (móvil) ---------- */
 a,button,.chip,.qopt,.ruta-btn,.seg,.prod,.lay-row{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 @media(hover:none){
@@ -402,6 +448,14 @@ a,button,.chip,.qopt,.ruta-btn,.seg,.prod,.lay-row{-webkit-tap-highlight-color:t
 .pyr div{display:grid;grid-template-columns:82px 1fr;gap:12px;align-items:baseline;font-size:15.5px}
 .pyr b{font-family:'Cormorant SC',serif;font-weight:600;font-size:11px;letter-spacing:.2em;color:var(--gold)}
 .sheet-buy{margin-top:28px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;border-top:1px solid var(--rule);padding-top:22px}
+/* En móvil la compra queda anclada al pie de la ficha: antes había que
+   atravesar aroma, pirámide, arcano, ritual y expansión para llegar a ella. */
+@media(max-width:820px){
+  .sheet-buy{position:sticky;bottom:calc(-1px - env(safe-area-inset-bottom,0px));z-index:3;margin-top:22px;
+    background:linear-gradient(180deg,rgba(15,12,21,.72),#0C0A11 34%);
+    padding:16px 0 calc(16px + env(safe-area-inset-bottom,0px));
+    box-shadow:0 -18px 26px -18px rgba(0,0,0,.95)}
+}
 .sheet-price{font-family:'Bodoni Moda',serif;font-size:26px;color:var(--gold-hi)}
 
 /* ---------- CARRITO ---------- */
@@ -600,6 +654,66 @@ footer{border-top:1px solid var(--rule);padding:clamp(52px,8vh,84px) 20px;text-a
 .pro-cta{margin-top:26px;display:flex;justify-content:center}
 .dos-rituales{max-width:62ch;margin:18px auto 0;padding-top:18px;border-top:1px solid var(--rule);font-size:15.5px;line-height:1.75;color:var(--txt)}
 .dos-rituales b{color:var(--gold-hi);font-weight:600}
+/* ---------- EL MAZO ---------- */
+.mazo{display:grid;grid-template-columns:repeat(auto-fit,minmax(74px,1fr));gap:10px;
+  max-width:720px;margin:26px auto 4px}
+.mazo.abierto{grid-template-columns:repeat(auto-fit,minmax(108px,1fr));gap:16px;max-width:860px}
+.mz-c{position:relative;aspect-ratio:2/3;border:0;padding:0;background:none;cursor:pointer;
+  opacity:0;transform:translateY(14px);animation:mzIn .6s var(--ease-out) forwards;animation-delay:var(--d,0ms);
+  transition:transform .45s var(--ease-out),filter .45s ease}
+@keyframes mzIn{to{opacity:1;transform:translateY(0)}}
+.mz-c:hover:not(:disabled){transform:translateY(-9px);filter:drop-shadow(0 10px 22px rgba(200,168,126,.30))}
+.mz-c:focus-visible{outline:1px solid var(--gold);outline-offset:3px}
+.mz-c:disabled{opacity:.26;cursor:default;filter:grayscale(.5)}
+.mz-c .face{position:absolute;inset:0;border-radius:3px;overflow:hidden;backface-visibility:visible;transform:none}
+.mz-c.abierta{aspect-ratio:auto;display:flex;flex-direction:column;gap:8px;align-items:center}
+.mz-c.abierta .face{position:relative;inset:auto;width:100%;aspect-ratio:2/3}
+.mz-n{font-family:'Cormorant SC',serif;font-weight:600;font-size:10.5px;letter-spacing:.1em;
+  color:var(--gold-dim);text-align:center;line-height:1.35}
+.mz-c.abierta:hover .mz-n{color:var(--gold-hi)}
+@media(max-width:560px){
+  .mazo{grid-template-columns:repeat(auto-fit,minmax(58px,1fr));gap:7px}
+  .mazo.abierto{grid-template-columns:repeat(auto-fit,minmax(92px,1fr));gap:12px}
+}
+/* posiciones elegidas sobre el mazo */
+.mz-pos{display:flex;gap:9px;justify-content:center;margin-top:20px}
+.mz-p{width:30px;height:30px;display:grid;place-items:center;border:1px solid var(--gold-dim);
+  font-family:'Cormorant SC',serif;font-size:12px;color:var(--gold-dim);border-radius:50%;transition:.4s var(--ease)}
+.mz-p.llena{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.mz-c.puesta{opacity:1;filter:none;cursor:default;transform:translateY(-9px)}
+.mz-c.puesta .face{box-shadow:0 0 0 1px var(--gold),0 10px 26px rgba(200,168,126,.34)}
+.mz-orden{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;
+  width:26px;height:26px;display:grid;place-items:center;border-radius:50%;
+  background:var(--gold);color:var(--ink);font-family:'Cormorant SC',serif;font-weight:600;font-size:13px}
+
+/* las cartas volteadas, lado a lado */
+.volteo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,4vw,44px);
+  max-width:640px;margin:30px auto 0}
+.volteo.tres{grid-template-columns:repeat(3,minmax(0,1fr));max-width:900px;gap:clamp(14px,3vw,30px)}
+.vt-c{opacity:0;transform:translateY(18px);animation:mzIn .7s var(--ease-out) forwards;animation-delay:var(--d,0ms);text-align:center}
+.vt-art{position:relative;aspect-ratio:2/3;margin-bottom:16px}
+.vt-art .face{position:absolute;inset:0;transform:none;border-radius:3px;overflow:hidden}
+.vt-n{font-family:'Bodoni Moda',serif;font-weight:700;font-size:clamp(19px,2.4vw,25px);color:var(--gold-hi);line-height:1.15}
+.vt-lex{font-family:'Cormorant SC',serif;font-weight:600;font-size:10.5px;letter-spacing:.2em;color:var(--label);margin-top:6px}
+.vt-fr{font-style:italic;font-size:14.5px;color:var(--txt);line-height:1.6;margin:12px auto 16px;max-width:30ch}
+.vt-acts{display:flex;flex-direction:column;gap:9px;align-items:center}
+.vt-acts .btn{width:100%}
+.vt-ver{font-family:'Cormorant SC',serif;font-weight:600;font-size:10.5px;letter-spacing:.14em;
+  color:var(--gold-dim);padding:5px 0;transition:color .35s ease}
+.vt-ver:hover{color:var(--gold-hi)}
+.vt-salida{display:flex;justify-content:center;margin-top:34px;padding-top:26px;border-top:1px solid var(--rule)}
+@media(max-width:620px){
+  .volteo,.volteo.tres{grid-template-columns:1fr;gap:34px;max-width:330px}
+}
+/* ---------- ¿RESONÓ? ---------- */
+.qr-reso{margin-top:26px;padding-top:22px;border-top:1px solid var(--rule)}
+.qr-reso-q{font-family:'Bodoni Moda',serif;font-size:20px;color:var(--gold-hi);margin-bottom:16px}
+.qr-reso-b{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.qr-reso-b .btn{min-width:236px}
+.qr-ver{display:block;margin:16px auto 0;font-family:'Cormorant SC',serif;font-weight:600;font-size:11px;
+  letter-spacing:.14em;color:var(--gold-dim);padding:6px 0;transition:color .35s ease}
+.qr-ver:hover{color:var(--gold-hi)}
+@media(max-width:560px){.qr-reso-b{flex-direction:column}.qr-reso-b .btn{width:100%;min-width:0}}
 .volver-arriba{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:34px;padding-top:26px;border-top:1px solid var(--rule)}
 .volver-arriba button{font-family:'Cormorant SC',serif;font-weight:600;font-size:11px;letter-spacing:.2em;
   color:var(--gold-dim);border-bottom:1px solid transparent;padding:4px 0;transition:.35s var(--ease)}
@@ -690,6 +804,8 @@ footer{border-top:1px solid var(--rule);padding:clamp(52px,8vh,84px) 20px;text-a
 .redeal{font-family:'Cormorant SC',serif;font-weight:600;font-size:10.5px;letter-spacing:.2em;
   color:var(--gold-dim);border-bottom:1px solid transparent;padding:3px 0;transition:.3s var(--ease)}
 .redeal:hover{color:var(--gold-hi);border-bottom-color:var(--gold-dim)}
+.chip.solo{border-style:dashed}
+.chip.solo.on{border-style:solid}
 .chip.sm{font-size:10.5px;letter-spacing:.14em;padding:7px 12px}
 .qopts-3{display:grid;grid-template-columns:1fr 1fr;gap:11px;max-width:820px}
 .qopts-3 .qopt{align-items:flex-start;padding:16px 18px;gap:14px}
@@ -709,18 +825,21 @@ footer{border-top:1px solid var(--rule);padding:clamp(52px,8vh,84px) 20px;text-a
 <nav id="nav">
   <div class="brand" onclick="go('top')">OCTAN</div>
   <div class="nav-l">
-    <a onclick="go('sellado')">El Sellado</a>
-    <a onclick="go('arcano')">Tu Arcano</a>
-    <a onclick="go('esencias')">Las Esencias</a>
-    <a onclick="go('umbral')">Apertura</a>
-    <a onclick="go('tarotistas')">Soy tarotista</a>
+    <a href="#sellado" onclick="event.preventDefault();go('sellado')">El Sellado</a>
+    <a href="#arcano" onclick="event.preventDefault();go('arcano')">Tu Arcano</a>
+    <a href="#esencias" onclick="event.preventDefault();go('esencias')">Las Esencias</a>
+    <a href="#umbral" onclick="event.preventDefault();go('umbral')">Apertura</a>
+    <a href="#tarotistas" onclick="event.preventDefault();go('tarotistas')">Soy tarotista</a>
   </div>
-  <a class="nav-cart" onclick="openCart()">CARRITO<span class="cc" id="cc">0</span></a>
+  <a class="nav-cart" href="#" role="button" onclick="event.preventDefault();openCart()" aria-label="Abrir el ritual">CARRITO<span class="cc" id="cc" aria-live="polite">0</span></a>
 </nav>
 
 <main>
 
 <!-- ═══════════ HERO · EL TIRAJE ═══════════ -->
+<!-- Portada de llegada: solo aparece cuando el enlace apunta a un arcano -->
+<section class="llegada" id="llegada" hidden></section>
+
 <header class="hero" id="top">
   <div class="hero-mark" id="mark" aria-label="OCTAN"></div>
   <div class="hero-sub">VEINTIDÓS ARCANOS · UNA ESENCIA PARA CADA UNO</div>
@@ -1155,7 +1274,9 @@ function sym(el,size,color){
   return `<svg width="${s}" height="${s}" viewBox="${-R} ${-R} ${s} ${s}" fill="none" stroke="${c}" stroke-width="${s*0.062}" stroke-linejoin="round">${p}</svg>`;
 }
 const POLARIDAD={F:'Femenino',M:'Masculino',U:'Unisex',D:'Dual'};
-function cardBack(k){
+/* ciego=true: dorso sin número ni símbolo elemental. Se usa en el mazo boca
+   abajo, donde ver el numeral permitiría reconocer la carta antes de levantarla. */
+function cardBack(k,ciego){
   const f=F[k];
   return `<div class="face back">
     <svg viewBox="0 0 120 180" style="position:absolute;inset:0;width:100%;height:100%" aria-hidden="true">
@@ -1170,10 +1291,10 @@ function cardBack(k){
         <circle cx="72" cy="34" r=".5"/><circle cx="46" cy="60" r=".45"/>
       </g>
     </svg>
-    <div style="position:relative;text-align:center;transform:translateY(-6%)">
+    ${ciego?'':`<div style="position:relative;text-align:center;transform:translateY(-6%)">
       <div class="numeral" style="font-size:14px;opacity:.8;letter-spacing:.22em;padding-left:.22em">${f.num}</div>
       <div style="margin-top:12px;opacity:.92">${sym(f.el,30,'#C8A87E')}</div>
-    </div></div>`;
+    </div>`}</div>`;
 }
 function cardFront(k){return `<div class="face front"><img src="${ART[k]}" alt="Carta ${F[k].n}" loading="lazy"></div>`;}
 
@@ -1231,13 +1352,15 @@ document.querySelector('.spread-hint').textContent=(TOUCH?'TOCA UNA CARTA PARA D
 
 
 /* ══════════════ PRODUCTOS ══════════════ */
-let fFam='todas', fOr='todas', uOr='todas';
+let fFam='todas', fOr='todas', uOr='todas', fSolo=false;
 function chips(){
   document.getElementById('chips-or').innerHTML=LENTE.map(([v,l])=>
     `<button class="chip${v===fOr?' on':''}" onclick="setOr('${v}')">${l}</button>`).join('');
   document.getElementById('chips-fam').innerHTML=FAMILIAS.map(([v,l])=>
-    `<button class="chip sm${v===fFam?' on':''}" onclick="setFam('${v}')">${l}</button>`).join('');
+    `<button class="chip sm${v===fFam?' on':''}" onclick="setFam('${v}')">${l}</button>`).join('')
+    +`<button class="chip sm solo${fSolo?' on':''}" onclick="setSolo()">${fSolo?'✓ ':''}Solo disponibles</button>`;
 }
+function setSolo(){fSolo=!fSolo;chips();renderEsencias();}
 function setFam(v){fFam=v;chips();renderEsencias();}
 function setOr(v){fOr=v;chips();renderEsencias();}
 
@@ -1265,14 +1388,17 @@ function prodCard(k,i){
 }
 
 function renderEsencias(){
-  const list=ESENCIAS.filter(k=>(fFam==='todas'||F[k].famKey===fFam)&&enLinea(k,fOr));
+  const list=ESENCIAS.filter(k=>(fFam==='todas'||F[k].famKey===fFam)&&enLinea(k,fOr)&&(!fSolo||avail(k)));
   const g=document.getElementById('grid-esencias');
   g.innerHTML=list.length?list.map(prodCard).join('')
-    :`<p class="grid-empty">Ningún arcano combina esos dos filtros.
-       <button class="chip on" onclick="setFam('todas')">Ver todas las familias</button></p>`;
+    :`<p class="grid-empty">Ningún arcano combina esos filtros.
+       <button class="chip on" onclick="fFam='todas';fOr='todas';fSolo=false;chips();renderEsencias();">Quitar los filtros</button></p>`;
   const linea=fOr==='todas'?'':` · línea ${fOr==='F'?'Para Ella':'Para Él'}`;
+  const disp=ESENCIAS.filter(avail).length;
   document.getElementById('fcount').textContent=
-    (fFam==='todas'&&fOr==='todas')?'Los veintidós arcanos':`${list.length} de 22 arcanos${linea}`;
+    (fFam==='todas'&&fOr==='todas'&&!fSolo)
+      ?`Los veintidós arcanos · ${disp} disponibles hoy`
+      :`${list.length} de 22 arcanos${linea}${fSolo?' · solo disponibles':''}`;
   reveal(g);
 }
 function renderUniones(){/* retirado: los 22 arcanos viven en una sola rejilla */}
@@ -1327,6 +1453,7 @@ function openSheet(k,fromStack){
     else if(!abierta)SHEET_STACK=[];
   }
   SHEET_K=k;
+  marcarURL(k);
   SHEET_LINEA=lineaActiva();
   const f=F[k];
   const compBlk=`<div class="blk"><h4>RITUAL DE APLICACIÓN</h4><p>${f.ritual}</p></div>`;
@@ -1362,12 +1489,15 @@ function openSheet(k,fromStack){
       </div>
       ${compBlk}
       ${expBlock(k)}
+      <div class="sheet-share">
+        <button onclick="copiarEnlace('${k}')" title="Copiar el enlace de este arcano">⧉ COPIAR ENLACE DE ESTE ARCANO</button>
+      </div>
       <div class="sheet-buy">${buy}</div>
       ${nota}
     </div></div>`;
   ov.classList.add('on');sheet.classList.add('on');sheet.scrollTop=0;document.body.style.overflow='hidden';
 }
-function closeAll(){ov.classList.remove('on');sheet.classList.remove('on');cart.classList.remove('on');document.body.style.overflow='';SHEET_STACK=[];SHEET_K=null;}
+function closeAll(){ov.classList.remove('on');sheet.classList.remove('on');cart.classList.remove('on');document.body.style.overflow='';SHEET_STACK=[];SHEET_K=null;marcarURL(null);}
 function sheetBack(){
   const prev=SHEET_STACK.pop();
   if(prev)openSheet(prev,true); else closeAll();
@@ -1424,6 +1554,75 @@ addEventListener('keydown',e=>{if(e.key==='Escape')closeAll();});
 /* ══════════════ QUIZ ══════════════ */
 let qz={};
 const stage=document.getElementById('stage');
+/* ══════════ ENLACE PROPIO POR ARCANO ══════════
+   El tarotista termina la lectura y le pasa a su consultante el enlace de su
+   arcano. Ese enlace tiene que abrir su carta, no la portada del sitio. */
+const SLUG={}, DESLUG={};
+(function(){
+  const limpia=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+  TODOS.forEach(k=>{const s=limpia(F[k].n);SLUG[k]=s;DESLUG[s]=k;});
+  SLUG.umbral='el-umbral'; DESLUG['el-umbral']='umbral';
+})();
+function enlaceDe(k){return location.origin+location.pathname+'#'+(SLUG[k]||k);}
+function marcarURL(k){
+  try{history.replaceState(null,'',k?('#'+SLUG[k]):location.pathname);}catch(_){}
+}
+async function copiarEnlace(k){
+  const url=enlaceDe(k);
+  try{
+    if(navigator.share&&matchMedia('(hover:none)').matches){await navigator.share({title:nameOf(k)+' · OCTAN',url});return;}
+    await navigator.clipboard.writeText(url); toast('Enlace copiado. Ya puedes compartirlo.');
+  }catch(_){ toast(url); }
+}
+function pintarLlegada(k){
+  const sec=document.getElementById('llegada'), hero=document.getElementById('top');
+  if(!sec)return false;
+  if(!k||!F[k]){sec.hidden=true;sec.innerHTML='';if(hero)hero.hidden=false;return false;}
+  const f=F[k], e=EXPANSION[k];
+  const compra=avail(k)
+    ?`<button class="btn solid" onclick="addToCart('${k}')"><span>LLEVAR MI SELLO · $500 MXN</span></button>`
+    :`<button class="btn solid" onclick="openNotify('${k}')"><span>AVÍSAME CUANDO ESTÉ</span></button>`;
+  const expo=(e&&EVALUADOS.includes(k)&&F[e.c])
+    ?`<button class="btn" onclick="openSheet('${e.c}')"><span>SU EXPANSIÓN: ${F[e.c].n.toUpperCase()}</span></button>`:'';
+  sec.innerHTML=`<div class="lleg-in">
+    <div class="lleg-art"><div class="frame"><span class="lleg-halo"></span><img src="${ART[k]}" alt="Carta ${f.n}"></div></div>
+    <div>
+      <div class="lleg-eye">TU ARCANO · RITUAL DE SELLADO</div>
+      <h1 class="lleg-n">${f.n}</h1>
+      <div class="lleg-num">ARCANO ${f.num} · ${f.lex.toUpperCase()}</div>
+      <p class="lleg-f">${f.frase}</p>
+      <p class="lleg-a">${f.aroma}</p>
+      <div class="lleg-meta">${sym(f.el,20,'#7E6743')}<span>${f.el.toUpperCase()}</span><i>·</i><span>${f.fam.toUpperCase()}</span><i>·</i><span>${avail(k)?'DISPONIBLE':'AGOTADO'}</span></div>
+      <div class="lleg-cta">
+        ${compra}
+        <button class="btn" onclick="openSheet('${k}')"><span>VER LA FICHA COMPLETA</span></button>
+        ${expo}
+      </div>
+    </div>
+  </div>
+  <button class="lleg-down" onclick="go('esencias')">EL MAZO COMPLETO ▾</button>`;
+  sec.hidden=false;
+  if(hero)hero.hidden=true;
+  document.title=`${f.n} · OCTAN`;
+  return true;
+}
+
+/* Al cargar: si el enlace apunta a un arcano, se abre su portada. */
+function rutaInicial(){
+  const s=(location.hash||'').replace('#','').toLowerCase();
+  const k=DESLUG[s];
+  if(k&&F[k]){pintarLlegada(k);return true;}
+  pintarLlegada(null);return false;
+}
+addEventListener('hashchange',()=>{
+  const s=(location.hash||'').replace('#','').toLowerCase();
+  const k=DESLUG[s];
+  if(k&&F[k]&&!document.getElementById('sheet').classList.contains('on')){
+    pintarLlegada(k); window.scrollTo({top:0,behavior:'smooth'});
+  }
+});
+
 function go(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}
 
 /* Al cambiar de paso o revelar el arcano, la vista debe quedar en lo nuevo.
@@ -1437,6 +1636,9 @@ function go(id){const el=document.getElementById(id);if(el)el.scrollIntoView({be
 let HUBO_INTERACCION=false;
 ['pointerdown','keydown','touchstart','wheel'].forEach(ev=>
   addEventListener(ev,()=>{HUBO_INTERACCION=true;},{once:true,passive:true}));
+
+/* Se ejecuta una sola vez, en cuanto el DOM está listo. */
+try{rutaInicial();}catch(_){}
 
 function verEtapa(suave){
   if(!HUBO_INTERACCION)return;
@@ -1466,6 +1668,14 @@ const MATICES=[
  ['➔','Fuerza para avanzar','Moverme con dirección y no quedarme.'],
  ['☾','Apertura para soltar','Dejar ir lo que ya cumplió su ciclo.']
 ];
+/* El movimiento de la lectura: la dimensión que mejor separa arcanos vecinos
+   (El Loco de La Muerte, La Estrella de La Torre). v: [principal, secundario] */
+const MOVIMIENTOS=[
+ ['✦','Algo empieza','La lectura abrió una puerta: algo nuevo, aún sin forma.'],
+ ['◈','Algo se sostiene','No hay ruptura ni estreno: hay que habitar lo que ya está.'],
+ ['✧','Algo termina','Un ciclo se cierra, se rompe o pide ser soltado.']
+];
+const MOVMAP={"loco": [0, 1], "mago": [0, 1], "sacerdotisa": [1, 0], "emperatriz": [1, 0], "emperador": [1, 0], "hierofante": [1, 0], "enamorados": [0, 1], "carro": [0, 1], "justicia": [1, 2], "ermitano": [1, 2], "rueda": [0, 2], "fuerza": [1, 0], "colgado": [1, 2], "muerte": [2, 0], "templanza": [1, 2], "diablo": [1, 2], "torre": [2, 0], "estrella": [0, 1], "luna": [1, 2], "sol": [1, 0], "juicio": [2, 0], "mundo": [2, 0]};
 /* t: [tema principal, tema secundario] · m: [matiz principal, matiz secundario] */
 const QMAP={
   sacerdotisa:{t:[4,2],m:[0,3]}, colgado:{t:[4,5],m:[3,1]}, luna:{t:[4,0],m:[1,3]},
@@ -1495,7 +1705,7 @@ function quizStart(){
         <div class="ruta-ic">☽</div>
         <div>
           <div class="ruta-t">Ya tuve mi lectura de tarot</div>
-          <div class="ruta-s">Reconocí un arcano en las cartas. Tres preguntas para confirmar cuál es y llevarte su esencia.<br><em>Sin datos personales</em></div>
+          <div class="ruta-s">Reconocí un arcano en las cartas. Cuatro preguntas, después extiendes el mazo y levantas tu carta.<br><em>Sin datos personales</em></div>
         </div>
       </button>
       <button class="ruta-btn" onclick="quizRutaAstral()">
@@ -1514,7 +1724,7 @@ function quizStart(){
 function quizRutaTarot(){
   qz={};
   stage.innerHTML=`<div class="fade">
-    <div class="qstep">RUTA TAROT · PASO 1 DE 3</div>
+    <div class="qstep">RUTA TAROT · PASO 1 DE 4</div>
     <div class="qq">¿Para quién es esta lectura?</div>
     <p class="qhint">Cada línea reúne sus arcanos y los que no tienen género.</p>
     <div class="qopts">
@@ -1536,7 +1746,7 @@ function quizG(g){
     `<div class="qopt" tabindex="0" onclick="quizT(${i})" onkeydown="if(event.key==='Enter')quizT(${i})">
       <div class="qopt-ic">${t[0]}</div><div><div class="qopt-t">${t[1]}</div><div class="qopt-s">${t[2]}</div></div></div>`).join('');
   stage.innerHTML=`<div class="fade">
-    <div class="qstep">RUTA TAROT · PASO 2 DE 3</div>
+    <div class="qstep">RUTA TAROT · PASO 2 DE 4</div>
     <div class="qq">¿Qué trajo tu lectura?</div>
     <p class="qhint">Lo que estuvo en el centro de la mesa.</p>
     <div class="qopts qopts-3">${opts}</div>
@@ -1544,36 +1754,151 @@ function quizG(g){
   verEtapa();
 }
 
-/* ─── PASO 3 · el matiz ─── */
+/* ─── PASO 3 · el movimiento ─── */
 function quizT(t){
   qz.t=t;
-  const opts=MATICES.map((m,i)=>
-    `<div class="qopt" tabindex="0" onclick="quizM(${i})" onkeydown="if(event.key==='Enter')quizM(${i})">
-      <div class="qopt-ic">${m[0]}</div><div><div class="qopt-t">${m[1]}</div><div class="qopt-s">${m[2]}</div></div></div>`).join('');
+  const opts=MOVIMIENTOS.map((v,i)=>
+    `<div class="qopt" tabindex="0" onclick="quizV(${i})" onkeydown="if(event.key==='Enter')quizV(${i})">
+      <div class="qopt-ic">${v[0]}</div><div><div class="qopt-t">${v[1]}</div><div class="qopt-s">${v[2]}</div></div></div>`).join('');
   stage.innerHTML=`<div class="fade">
-    <div class="qstep">RUTA TAROT · PASO 3 DE 3</div>
-    <div class="qq">¿Qué quieres llevar contigo?</div>
-    <p class="qhint">La energía que tu esencia anclará después de la lectura.</p>
+    <div class="qstep">RUTA TAROT · PASO 3 DE 4</div>
+    <div class="qq">¿En qué momento te dejó la lectura?</div>
+    <p class="qhint">No qué tema tocó, sino hacia dónde se movía.</p>
     <div class="qopts">${opts}</div>
     <button class="qback" onclick="quizG('${qz.g}')">← Volver</button></div>`;
   verEtapa();
 }
 
-function puntuarTarot(k,t,m){
-  const q=QMAP[k];if(!q)return 0;
-  return (q.t[0]===t?3:q.t.indexOf(t)>0?1:0)+(q.m[0]===m?3:q.m.indexOf(m)>0?1:0);
+/* ─── PASO 4 · el matiz ─── */
+function quizV(v){
+  qz.v=v;
+  const opts=MATICES.map((m,i)=>
+    `<div class="qopt" tabindex="0" onclick="quizM(${i})" onkeydown="if(event.key==='Enter')quizM(${i})">
+      <div class="qopt-ic">${m[0]}</div><div><div class="qopt-t">${m[1]}</div><div class="qopt-s">${m[2]}</div></div></div>`).join('');
+  stage.innerHTML=`<div class="fade">
+    <div class="qstep">RUTA TAROT · PASO 4 DE 4</div>
+    <div class="qq">¿Qué quieres llevar contigo?</div>
+    <p class="qhint">La energía que tu esencia anclará después de la lectura.</p>
+    <div class="qopts">${opts}</div>
+    <button class="qback" onclick="quizT(${qz.t})">← Volver</button></div>`;
+  verEtapa();
 }
+
+/* Tema y matiz pesan 3; el movimiento afina con 2.5 para no dominar la elección. */
+function puntuarTarot(k,t,m,v){
+  const q=QMAP[k];if(!q)return 0;
+  let p=(q.t[0]===t?3:q.t.indexOf(t)>0?1:0)+(q.m[0]===m?3:q.m.indexOf(m)>0?1:0);
+  const mv=MOVMAP[k];
+  if(mv&&v!==undefined&&v!==null) p+=(mv[0]===v?2.5:mv[1]===v?1:0);
+  return p;
+}
+/* ─── EL MAZO ───
+   Las cuatro respuestas ordenan los arcanos de la línea. El mazo se extiende
+   boca abajo, barajado en cada visita y sin numeración: es el gesto del ritual,
+   igual que en la mesa. Se levantan hasta tres cartas; si ninguna resuena,
+   el mazo se abre para elegir con la vista. */
 function quizM(m){
   qz.m=m;
   const pool=LINEA[qz.g];
-  const orden=pool.slice().sort((a,b)=>puntuarTarot(b,qz.t,m)-puntuarTarot(a,qz.t,m)||pool.indexOf(a)-pool.indexOf(b));
-  renderResultado(orden[0],{
+  qz.orden=pool.slice().sort((a,b)=>
+    puntuarTarot(b,qz.t,m,qz.v)-puntuarTarot(a,qz.t,m,qz.v)||pool.indexOf(a)-pool.indexOf(b));
+  qz.elegidas=[];      /* posiciones tocadas en el mazo */
+  qz.reveladas=[];     /* arcanos ya destapados, en orden */
+  qz.barajado=TODOS.slice().sort(()=>Math.random()-0.5);
+  extenderMazo();
+}
+
+/* Se eligen DOS cartas sobre el mazo cerrado y se voltean juntas, como en la
+   mesa. Solo si ninguna de las dos resuena se levanta una tercera. */
+function extenderMazo(){
+  const faltan=(qz.tercera?3:2)-qz.elegidas.length;
+  const cartas=qz.barajado.map((k,i)=>{
+    const puesta=qz.elegidas.indexOf(i);
+    return `<button class="mz-c${puesta>=0?' puesta':''}" ${puesta>=0?'disabled':''}
+      onclick="tomarCarta(${i})" aria-label="Carta ${i+1} del mazo" style="--d:${i*22}ms">
+      ${cardBack(k,true)}${puesta>=0?`<span class="mz-orden">${puesta+1}</span>`:''}</button>`;}).join('');
+  const contador=qz.elegidas.map((_,i)=>`<span class="mz-p llena">${i+1}</span>`).join('')
+    + Array.from({length:Math.max(0,faltan)},(_,i)=>`<span class="mz-p">${qz.elegidas.length+i+1}</span>`).join('');
+  stage.innerHTML=`<div class="fade">
+    <div class="qstep">RUTA TAROT · EL MAZO</div>
+    <div class="qq">${qz.tercera?'Levanta una tercera carta':'Elige dos cartas'}</div>
+    <p class="qhint">${qz.tercera
+      ? 'Ninguna de las dos anteriores era. Toma una más.'
+      : 'Veintidós cartas boca abajo. No pienses cuál: deja que tu mano decida. Se voltean las dos juntas.'}</p>
+    <div class="mz-pos">${contador}</div>
+    <div class="mazo">${cartas}</div>
+    <button class="qback" onclick="quizV(${qz.v})">← Volver a las preguntas</button></div>`;
+  verEtapa();
+}
+
+function tomarCarta(i){
+  if(qz.elegidas.includes(i))return;
+  qz.elegidas.push(i);
+  const meta=qz.tercera?3:2;
+  if(qz.elegidas.length<meta){ extenderMazo(); return; }
+  qz.reveladas=qz.orden.slice(0,meta);
+  voltearCartas();
+}
+
+/* Las cartas volteadas, una junto a otra. La persona decide cuál reconoce. */
+function voltearCartas(){
+  const n=qz.reveladas.length;
+  const cartas=qz.reveladas.map((k,i)=>{
+    const f=F[k];
+    return `<div class="vt-c" style="--d:${i*160}ms">
+      <div class="vt-art">${cardFront(k)}</div>
+      <div class="vt-n">${f.n}</div>
+      <div class="vt-lex">${f.lex}</div>
+      <p class="vt-fr">&ldquo;${f.frase}&rdquo;</p>
+      <div class="vt-acts">
+        <button class="btn solid" onclick="elegirRevelada('${k}')"><span>ES ESTA</span></button>
+        <button class="vt-ver" onclick="openSheet('${k}')">Ver su ficha →</button>
+      </div></div>`;}).join('');
+  const salida=n>=3
+    ? `<button class="btn" onclick="abrirMazo()"><span>NINGUNA · ABRIR EL MAZO ENTERO</span></button>`
+    : `<button class="btn" onclick="sacarTercera()"><span>NINGUNA DE LAS DOS · SACAR UNA TERCERA</span></button>`;
+  stage.innerHTML=`<div class="fade">
+    <div class="qstep">RUTA TAROT · ${n===3?'LAS TRES CARTAS':'LAS DOS CARTAS'}</div>
+    <div class="qq">¿Cuál reconociste en tu lectura?</div>
+    <p class="qhint">${qz.g==='F'?'Línea Para Ella':'Línea Para Él'} · toca la que resonó, o abre su ficha para leerla completa.</p>
+    <div class="volteo${n===3?' tres':''}">${cartas}</div>
+    <div class="vt-salida">${salida}</div>
+    <button class="qback" onclick="quizV(${qz.v})">↺ Empezar de nuevo</button></div>`;
+  verEtapa();
+}
+
+function sacarTercera(){ qz.tercera=true; extenderMazo(); }
+
+function elegirRevelada(k){
+  renderResultado(k,{
     label:'TU ARCANO ES',
     sub:qz.g==='F'?'LÍNEA PARA ELLA':'LÍNEA PARA ÉL',
-    alts:orden.slice(1,4),
-    back:'quizRutaTarot()'
+    back:'voltearCartas()', backTxt:'← Volver a las cartas'
   });
+}
+
+/* Última instancia: el mazo abierto, para elegir con la vista.
+   Solo los arcanos de la línea elegida, para no entregar una esencia
+   que la persona no se va a poner. */
+function abrirMazo(){
+  const pool=LINEA[qz.g];
+  const cartas=pool.map((k,i)=>
+    `<button class="mz-c abierta" onclick="elegirDelMazo('${k}')" style="--d:${i*20}ms">
+      ${cardFront(k)}<span class="mz-n">${F[k].n}</span></button>`).join('');
+  stage.innerHTML=`<div class="fade">
+    <div class="qstep">RUTA TAROT · EL MAZO ABIERTO</div>
+    <div class="qq">Elige el arcano que reconociste</div>
+    <p class="qhint">Los ${pool.length} arcanos de tu línea, a la vista. El que salió en tu lectura está aquí.</p>
+    <div class="mazo abierto">${cartas}</div>
+    <button class="qback" onclick="voltearCartas()">← Volver a las cartas</button></div>`;
   verEtapa();
+}
+function elegirDelMazo(k){
+  renderResultado(k,{
+    label:'TU ARCANO ES',
+    sub:qz.g==='F'?'LÍNEA PARA ELLA':'LÍNEA PARA ÉL',
+    back:'abrirMazo()', backTxt:'← Volver al mazo abierto'
+  });
 }
 
 /* Resultado compartido por las dos rutas */
@@ -1583,6 +1908,10 @@ function renderResultado(k,opt){
     ?`<button class="btn solid" onclick="addToCart('${k}')"><span>AÑADIR · $500 MXN</span></button>`
     :`<button class="btn solid" onclick="openNotify('${k}')"><span>AVÍSAME CUANDO ESTÉ</span></button>`;
   const uniBlk=avail(k)?'':`<div class="qr-layer">Tu arcano está agotado. Déjanos tu correo y te avisamos en cuanto vuelva su lote.</div>`;
+  const reso=opt.resonancia?`<div class="qr-reso">
+      <p class="qr-reso-q">¿Resonó con lo que viste en tu lectura?</p>
+      <div class="qr-reso-b">${cta}${opt.resonancia}</div>
+    </div>`:'';
   const alts=(opt.alts||[]).filter(x=>F[x]&&(!lineaActiva()||enLinea(x,lineaActiva())));
   const altsBlk=alts.length?`<div class="qr-alts">
       <span class="qr-alts-t">TAMBIÉN RESONARON</span>
@@ -1600,12 +1929,12 @@ function renderResultado(k,opt){
     ${uniBlk}
     ${opt.extra||''}
     ${altsBlk}
-    <div class="qr-btns">
+    ${reso || `<div class="qr-btns">
       ${cta}
       <button class="btn" onclick="openSheet('${k}')"><span>VER EL ARCANO</span></button>
-    </div>
-    <button class="qback" onclick="${opt.back}">↺ Empezar de nuevo</button></div>`;
-  go('arcano');
+    </div>`}
+    ${reso?`<button class="qr-ver" onclick="openSheet('${k}')">Ver la ficha completa de ${f.n} →</button>`:''}
+    <button class="qback" onclick="${opt.back}">${opt.backTxt||'↺ Empezar de nuevo'}</button></div>`;
   verEtapa();
 }
 
