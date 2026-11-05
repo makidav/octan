@@ -700,6 +700,18 @@ nav.stuck .brand-sub{font-size:8px}
 @media(max-width:400px){
   .nav-l a:not(.nav-cart){font-size:10px;letter-spacing:.1em}
 }
+
+/* v21 · dosis, cesión a la tarotista, invitación */
+.sh-dosis{margin-top:10px;padding-top:9px;border-top:1px solid var(--rule);
+  font-size:13.5px;color:var(--gold-dim);line-height:1.6;font-style:italic}
+.qr-cede{max-width:52ch;margin:14px auto 0;font-size:13.5px;font-style:italic;
+  color:var(--gold-dim);line-height:1.6}
+.exp-invita{max-width:58ch;margin:clamp(26px,3.4vw,40px) auto 0;text-align:center;
+  font-size:14px;font-style:italic;color:var(--gold-dim);line-height:1.65;
+  border-top:1px solid var(--rule);padding-top:20px}
+.exp-invita a{color:var(--gold-hi);border-bottom:1px solid var(--gold-dim)}
+.ast-arcano-sub{font-family:'Cormorant SC',serif;font-weight:600;font-size:10px;
+  letter-spacing:.24em;color:var(--gold-dim);margin-bottom:12px}
 </style></head>
 <body>
 
@@ -751,7 +763,7 @@ nav.stuck .brand-sub{font-size:8px}
     <div class="eyebrow rise">El Ritual de Sellado</div>
     <h2 class="display rise" data-d="1">Lo que las cartas revelan, el aroma lo sostiene</h2>
     <p class="lede rise" data-d="2">Toda lectura revela algo con precisión. Días después, esa precisión se difumina.</p>
-    <p class="body rise" data-d="2">El Ritual de Sellado ancla el arcano que reconociste como tuyo a una esencia. Y el olfato —el único sentido que alcanza la memoria sin pasar por el pensamiento— te lo devuelve intacto.</p>
+    <p class="body rise" data-d="2">El Ritual de Sellado ancla a una esencia el arcano que reconociste como tuyo. El olfato guarda una relación profunda con la memoria y la emoción: al volver a ese aroma puedes reencontrarte con lo que aquella lectura significó para ti.</p>
     <p class="body rise" data-d="2">Dos rituales enmarcan la lectura. Uno la abre y le pertenece al tarotista. El otro la sella y se va contigo.</p>
     <p class="close rise" data-d="3">No es el perfume el que obra. Eres tú, recordándote, durante los meses que dura el frasco.</p>
 
@@ -759,7 +771,7 @@ nav.stuck .brand-sub{font-size:8px}
       <div class="step rise"><div class="step-n numeral">0</div><div class="step-t">LA APERTURA</div><p class="step-d">El tarotista abre el espacio con El Umbral. Cuando el aroma se asienta, la mesa deja de ser una mesa. <a href="#umbral" onclick="event.preventDefault();go('umbral')" class="step-link">Ver el Ritual de Apertura</a></p></div>
       <div class="step rise" data-d="1"><div class="step-n numeral">I</div><div class="step-t">LA LECTURA</div><p class="step-d">Durante una hora las cartas hablan. Un arcano resuena con tu momento y se vuelve tu guía.</p></div>
       <div class="step rise" data-d="2"><div class="step-n numeral">II</div><div class="step-t">EL SELLO</div><p class="step-d">Ese arcano tiene una esencia que lo encarna. Al elegirla, sellas lo que la lectura te mostró.</p></div>
-      <div class="step rise" data-d="3"><div class="step-n numeral">III</div><div class="step-t">EL RETORNO</div><p class="step-d">Meses después, dos atomizaciones bastan. El arcano vuelve completo, sin que tengas que releer una sola nota.</p></div>
+      <div class="step rise" data-d="3"><div class="step-n numeral">III</div><div class="step-t">EL RETORNO</div><p class="step-d">Días, semanas o meses después, el aroma puede devolverte una emoción, una pregunta o una decisión nacida de aquella lectura. No para repetir el pasado, sino para reconocer cuánto has cambiado.</p></div>
     </div>
   </div>
 </section>
@@ -803,9 +815,9 @@ nav.stuck .brand-sub{font-size:8px}
 <!-- ═══════════ QUIZ ═══════════ -->
 <section class="quiz" id="arcano">
   <div class="shell quiz-wrap">
-    <div class="eyebrow rise">Después de tu lectura</div>
-    <h2 class="display rise" data-d="1">Reconoce tu arcano</h2>
-    <p class="quiz-p rise" data-d="2">El arcano no se calcula: aparece en la mesa, frente a un tarotista. Si ya tuviste tu lectura, estas tres preguntas te ayudan a reconocer cuál de los veintidós fue el tuyo y a elegir su esencia.</p>
+    <div class="eyebrow rise">Dos puertas</div>
+    <h2 class="display rise" data-d="1">Encuentra tu arcano</h2>
+    <p class="quiz-p rise" data-d="2">Puedes llegar por la carta que apareció en tu lectura, o por el arcano cuyo carácter y significado conectan con tu momento. En los dos casos el aroma es una expresión del arcano, no una promesa de destino.</p>
     <div id="stage"></div>
   </div>
 </section>
@@ -857,7 +869,8 @@ nav.stuck .brand-sub{font-size:8px}
     <div class="sec-head">
       <div class="eyebrow rise">Ritual de Sellado · Arcanos</div>
       <h2 class="display rise" data-d="1" style="font-size:clamp(30px,4.4vw,52px)">Veintidós arcanos, veintidós esencias</h2>
-      <p class="rise" data-d="2">Terminada la lectura llega el Sello. Cada arcano tiene una esencia propia que encarna una forma de mirar, decidir, atravesar o transformar lo que las cartas hicieron visible. Se lleva sola: dos atomizaciones sobre el punto de pulso, antes de levantarte de la mesa.</p>
+      <p class="rise" data-d="2">Cada arcano tiene una esencia propia que encarna una forma de mirar, decidir, atravesar o transformar. Se lleva sola, sobre el punto de pulso: al cerrar la lectura si vienes de una, o cuando quieras si llegaste hasta aquí por afinidad con la carta.</p>
+      <p class="rise sec-warn" data-d="3">Los veintidós están probados en piel. Lo que se describe en cada ficha es lo que observamos en esas pruebas; cada piel lo lleva a su manera.</p>
     </div>
     <div class="filters">
       <div class="chips" id="chips-or"></div>
@@ -874,10 +887,13 @@ nav.stuck .brand-sub{font-size:8px}
     <div class="sec-head">
       <div class="eyebrow rise">Movimiento III · Ritual de Expansión</div>
       <h2 class="display rise" data-d="1" style="font-size:clamp(30px,4.4vw,52px)">Cuando un arcano admite una capa</h2>
-      <p class="rise" data-d="2">Los fondos se acumulan; las salidas compiten y se cancelan. Por eso solo es predecible superponer una esencia simple sobre una compleja, y solo tres de los veintidós cumplen esa condición: El Colgado, La Muerte y La Sacerdotisa. Van encima, nunca debajo, y siempre en proporción de dos a uno.</p>
-      <p class="rise sec-warn" data-d="3">Estas cinco combinaciones se derivan de la mecánica de superposición y de lo que la nariz encontró en cada concentrado. Ninguna se ha probado en piel todavía: son propuestas, no resultados.</p>
+      <p class="rise" data-d="2">Algunas esencias dialogan entre sí y revelan matices que por separado no tienen. Los fondos se acumulan y las salidas compiten, así que una esencia simple encima de una compleja es la que menos sorpresas da: solo tres de los veintidós sirven para eso. Van encima, nunca debajo, y en proporción de dos a uno.</p>
+      <p class="rise sec-warn" data-d="3">Los veintidós están probados en piel uno a uno. Estas siete combinaciones, en cambio, son propuestas: no cuentan todavía con validación sensorial conjunta, y su resultado puede variar según la piel, la cantidad y la evolución de cada perfume.</p>
     </div>
     <div class="pgrid" id="grid-expansion"></div>
+    <p class="exp-invita rise">¿Probaste una combinación que funciona y no está aquí? Cuéntanosla en
+      <a href="mailto:makidavher@gmail.com?subject=Combinaci%C3%B3n%20de%20Expansi%C3%B3n">makidavher@gmail.com</a>.
+      El mapa se amplía con lo que la piel de la gente va encontrando.</p>
   </div>
 </section>
 
@@ -946,221 +962,243 @@ loco:{n:"El Loco",num:"0",or:"U",lex:"Salto sin Garantías",reg:"Luminosa",
  fam:"Cítrico gourmand afrutado",famKey:"citricas",estado:"venta",piel:true,
  frase:"El camino no exige que conozcas el final; exige que estés dispuesto a dar el primer paso.",
  predomina:"Toronja y jengibre, sin freno",
- lectura:"Surge ante un comienzo, una salida de lo conocido o una posibilidad que no puede ofrecerte todas las garantías. Habla de apertura y confianza, pero no de imprudencia. Te invita a llevar contigo lo aprendido, aceptar la incertidumbre y permitir que la experiencia revele lo que el plan todavía no puede mostrar.",
+ lectura:"Nadie salta sabiendo. Es el comienzo que no ofrece garantías y tampoco finge tenerlas: te pide moverte con lo aprendido y aceptar que no alcanza para prever el final. No habla de imprudencia, sino de la diferencia entre esperar certezas y aceptar que no van a llegar.",
  aroma:"Expansiva y sin freno. Toronja y jengibre irrumpen con una brusquedad que no pide permiso; debajo aparecen fruta tropical y jazmín, y el fondo de praliné, ámbar y almizcle se queda cuando el impulso ya pasó. Ocupa más espacio del que se le pidió.",
  sella:"Doy el primer paso con apertura, curiosidad y responsabilidad sobre mi elección.",
  p:["Toronja · Jengibre","Fruta tropical · Jazmín","Praliné · Ámbar · Almizcle"],
- ritual:"Dos atomizaciones sobre el punto de pulso, al cerrar la lectura. Es el único arcano construido con dos esencias del propio mazo: no lo muestres el mismo día que El Mago ni que La Fuerza."},
+ ritual:"Nombra algo que harías si no tuvieras que tener razón. No lo hagas aún: basta con que exista en voz alta.",
+ dosis:"Dos atomizaciones. Es el único construido con dos esencias del propio mazo; si lees para otras personas, no lo presentes el mismo día que El Mago ni que La Fuerza."},
 
 mago:{n:"El Mago",num:"I",or:"M",lex:"Intención Manifiesta",reg:"Luminosa",
  fam:"Cítrico aromático",famKey:"citricas",estado:"venta",piel:true,
  frase:"Ya tienes los elementos; ahora convierte tu intención en acto.",
  predomina:"Toronja y jengibre",
- lectura:"Aparece cuando una posibilidad necesita de tu participación para existir. Te recuerda los recursos y capacidades que ya están disponibles. La pregunta no es si puedes, sino hacia dónde vas a dirigir conscientemente tu energía.",
+ lectura:"Todo lo que hace falta ya está sobre la mesa. Es el arcano de quien deja de buscar fuera, mira sus propias manos y reconoce que las herramientas llevaban ahí todo el tiempo. La pregunta no es si puedes: es hacia dónde vas a dirigir lo que ya tienes.",
  aroma:"Vibrante y expansiva. Toronja y jengibre encendidos sobre un corazón seco de salvia, con vetiver, ámbar y ládano al fondo. El aire de un comienzo.",
  sella:"Concentro mi energía y doy forma a lo que elijo.",
  p:["Toronja · Jengibre","Salvia","Vetiver · Ámbar · Ládano"],
- ritual:"Dos atomizaciones sobre el punto de pulso, al cerrar la lectura. Su salida es lo que más rápido se pierde: aplícala justo antes de levantarte de la mesa."},
+ ritual:"Busca un recurso que ya tengas y no hayas usado. Si en tres meses sigue siendo el mismo, nunca fue falta de herramientas.",
+ dosis:"Dos atomizaciones. Su salida se pierde antes que la de ningún otro: aplícala justo antes de levantarte."},
 
 sacerdotisa:{n:"La Sacerdotisa",num:"II",or:"F",lex:"Saber Interior",reg:"Profunda",
  fam:"Sándalo cremoso con cuero",famKey:"amaderadas",estado:"venta",piel:true,
  frase:"La respuesta ya se mueve dentro de ti; el silencio te permite escucharla.",
  predomina:"Sándalo",
- lectura:"Surge cuando aún no tienes toda la información o cuando una decisión necesita madurar. Te pide observar, escuchar tu intuición y no precipitar lo que todavía se está revelando. Hay momentos en que avanzar significa saber esperar.",
+ lectura:"Hay un silencio que no es falta de respuesta, sino respuesta sin decir. Te pide escuchar lo que ya sabes antes de salir a buscar quién te lo confirme, y aceptar que hay decisiones que necesitan madurar antes de poder tomarse.",
  aroma:"Íntima y contemplativa. Cardamomo, violeta e iris que se retiran hacia sándalo australiano y cedro, sobre cuero suave, ámbar y almizcle. Una segunda piel para escuchar en silencio.",
  sella:"Confío en mi percepción y respeto el tiempo de lo que aún no se revela.",
  p:["Cardamomo · Violeta · Iris","Sándalo australiano · Cedro","Cuero · Ámbar · Almizcle"],
- ritual:"Dos atomizaciones sobre el punto de pulso, al cerrar la lectura. No se entrega de inmediato: se aproxima y se retira durante horas."},
+ ritual:"Trae contigo la pregunta que aún no has dicho en voz alta. No la respondas hoy: déjala madurar un poco más.",
+ dosis:"Dos atomizaciones. No se entrega de golpe: se acerca y se retira durante horas."},
 
 emperatriz:{n:"La Emperatriz",num:"III",or:"F",lex:"Abundancia Creadora",reg:"Luminosa",
  fam:"Chipre floral",famKey:"florales",estado:"venta",piel:true,
  frase:"Lo que cuidas con presencia está listo para florecer.",
  predomina:"Rosa y jazmín sobre pachulí",
- lectura:"Aparece cuando algo necesita ser creado, nutrido o recibido: un vínculo, un proyecto, una etapa nueva o tu propia relación contigo. Te recuerda que crecer no siempre es esforzarte más — también es permitirte recibir y cuidar lo que ya tiene vida.",
+ lectura:"Lo que florece no lo hizo solo: alguien lo sostuvo mientras no podía sostenerse. Es el arcano de crear, nutrir y soltar el control sobre la forma en que crece lo que cuidas. Crecer no siempre es esforzarte más; a veces es permitirte recibir.",
  aroma:"Envolvente y vital. Naranja y bergamota que abren, un corazón de rosa y jazmín, un fondo de pachulí y vetiver que sostiene. Huele a algo que crece y está listo para darse.",
  sella:"Recibo, nutro y hago florecer lo que tiene vida para mí.",
  p:["Naranja · Bergamota","Rosa · Jazmín","Pachulí · Vetiver"],
- ritual:"Dos atomizaciones sobre el punto de pulso, al cerrar la lectura. Proyecta con amplitud: en espacios cerrados, una es suficiente."},
+ ritual:"Reconoce algo que cuidaste y que ya crece sin ti. Que deje de necesitarte no es perderlo: es la prueba de que funcionó.",
+ dosis:"Dos atomizaciones. Proyecta con amplitud: en espacios cerrados, una basta."},
 
 emperador:{n:"El Emperador",num:"IV",or:"M",lex:"Orden con Propósito",reg:"Luminosa",
  fam:"Iris amaderado ambarado",famKey:"amaderadas",estado:"venta",piel:true,
  frase:"Lo que deseas sostener necesita una decisión, un límite y una estructura.",
  predomina:"Iris frío y empolvado",
- lectura:"Surge cuando necesitas recuperar dirección, poner límites o construir estabilidad. No representa control rígido, sino la responsabilidad de crear una estructura capaz de sostener aquello que te importa.",
+ lectura:"La autoridad no es mandar, es responder. Es la estructura que alguien levanta para que algo frágil pueda durar dentro de ella, incluido quien la está levantando. No habla de control rígido: habla de hacerse cargo de lo que sostienes.",
  aroma:"Firme y contenida. Bergamota y pimienta abren con precisión; el iris aparece enseguida, frío y empolvado, sobre una tensión resinosa de elemi. Cedro, pachulí y ámbar sostienen todo lo demás. Nada sobra y nada se desborda.",
  sella:"Pongo orden, marco mis límites y sostengo mi decisión.",
  p:["Bergamota · Pimienta","Iris · Elemi","Cedro · Pachulí · Ámbar"],
- ritual:"Dos atomizaciones sobre el punto de pulso, al cerrar la lectura. Es de las más pegadas a la piel del mazo: se lleva cerca, no se anuncia."},
+ ritual:"Identifica un límite que no has puesto todavía. La autoridad empieza ahí, no en el volumen con que se anuncia.",
+ dosis:"Dos atomizaciones. Es de las más pegadas a la piel del mazo: se lleva cerca, no se anuncia."},
 
 hierofante:{n:"El Hierofante",num:"V",or:"M",lex:"Sabiduría Transmitida",reg:"Profunda",
- fam:"Amaderado oscuro con oud e incienso",famKey:"amaderadas",estado:"venta",piel:false,
+ fam:"Amaderado oscuro con oud e incienso",famKey:"amaderadas",estado:"venta",piel:true,
  frase:"Lo que has aprendido cobra sentido cuando encuentra una forma de ser vivido y compartido.",
  predomina:"Madera seca e incienso",
- lectura:"Aparece cuando necesitas una guía, una tradición, un maestro o un marco de valores capaz de orientar el momento. También puede preguntarte qué creencias heredaste sin elegirlas. El Hierofante no exige obediencia ciega: invita a reconocer la sabiduría que merece conservarse y la forma responsable de transmitirla.",
+ lectura:"¿Cuánto de lo que crees lo elegiste? Es el arcano de la enseñanza recibida: de lo que merece conservarse, de lo que se heredó sin examinarlo, y de cómo se transmite lo demás. No pide obediencia; pide distinguir entre la sabiduría y la costumbre.",
  aroma:"Oscura y contenida. Cardamomo y palo de rosa abren con especia seca, sin una gota de dulzor; enseguida la madera toma el centro, seca y profunda, con un humo de incienso. No envuelve: sostiene. Con las horas se acerca a la piel, y lo último que queda es el palo de rosa sobre un poco de ámbar. Es el aroma de lo que se enseña en voz baja.",
  sella:"Recibo la enseñanza, reconozco su raíz y elijo cómo encarnarla.",
  p:["Cardamomo · Palo de rosa","Oud · Maderas secas · Incienso","Ámbar"],
- ritual:"Dos atomizaciones sobre el punto de pulso, al cerrar la lectura. Se va acercando a la piel con las horas: lo último que queda, el palo de rosa, es lo más suyo."},
+ ritual:"Elige una idea que te enseñaron y pregúntate si la elegiste. Con los meses irás sabiendo cuáles conservas.",
+ dosis:"Dos atomizaciones. Se acerca a la piel con las horas: lo último que queda, el palo de rosa, es lo más suyo."},
 
 enamorados:{n:"Los Enamorados",num:"VI",or:"U",lex:"Elegir en Coherencia",reg:"Luminosa",
- fam:"Rosa especiada andrógina",famKey:"florales",estado:"venta",piel:false,
+ fam:"Rosa especiada andrógina",famKey:"florales",estado:"venta",piel:true,
  frase:"Elegir de verdad es acercarte al otro sin abandonarte a ti.",
  predomina:"Rosa",
- lectura:"Puede hablar de amor, atracción y vínculo, pero su centro es la elección. Aparece cuando deseo, valores y consecuencias necesitan mirarse de frente. No garantiza una pareja ni señala automáticamente a una persona destinada: pregunta qué unión o qué camino puedes elegir sin dividirte por dentro.",
+ lectura:"No es la carta del amor: es la de la elección. Llega cuando dos cosas verdaderas tiran en direcciones opuestas y ninguna de las dos es, exactamente, el error. No garantiza una pareja ni señala a nadie: pregunta qué puedes elegir sin dividirte por dentro.",
  aroma:"Una rosa que no se comporta como una rosa. El incienso y las maderas secas la atraviesan y le quitan lo dulce sin quitarle lo suave: lo floral adquiere firmeza, lo amaderado revela delicadeza, y el resultado no es ninguno de los dos. Al final queda la rosa sola, sutil, casi cítrica.",
  sella:"Elijo el vínculo y el camino que pueden existir sin que yo me abandone.",
  p:["Rosa · Comino","Olíbano · Pimienta","Guayaco · Vetiver · Cedro"],
- ritual:"Dos atomizaciones sobre el punto de pulso, al cerrar la lectura. Su cierre es una rosa sola y suave, casi cítrica: la que se queda contigo cuando lo demás ya se fue."},
+ ritual:"Pregúntate qué parte de ti dejas fuera cuando eliges. La respuesta cambia con los meses, y ése es justo el punto.",
+ dosis:"Dos atomizaciones. Su cierre es una rosa sola y suave, casi cítrica."},
 
 carro:{n:"El Carro",num:"VII",or:"M",lex:"Voluntad en Movimiento",reg:"Luminosa",
  fam:"Cítrico amaderado aromático",famKey:"citricas",estado:"venta",piel:true,
  frase:"La dirección aparece cuando tus fuerzas dejan de competir y avanzan juntas.",
  predomina:"Cítrico y menta",
- lectura:"Surge cuando hay una meta, un traslado, un desafío o una decisión que exige tomar las riendas. No representa velocidad sin control: muestra la necesidad de alinear impulsos opuestos y sostener una dirección. La victoria que anuncia no consiste solo en llegar, sino en no perderte mientras avanzas.",
+ lectura:"Avanzar es fácil; lo difícil es no perderte en el trayecto. Es el arcano de las fuerzas que dejan de competir entre ellas y empujan por fin hacia un mismo sitio. La victoria que anuncia no consiste solo en llegar: consiste en reconocerte al llegar.",
  aroma:"Dirigida y sin dispersión. Limón, menta y pimienta rosa empujan hacia adelante; el jengibre y la nuez moscada dan impulso mientras el incienso, el vetiver y el cedro mantienen el rumbo. Todo en ella apunta al mismo sitio.",
  sella:"Reúno mis fuerzas, sostengo el rumbo y avanzo con decisión.",
  p:["Limón · Menta · Pimienta rosa","Jengibre · Nuez moscada · Incienso","Cedro · Vetiver · Sándalo · Ládano"],
- ritual:"Dos atomizaciones sobre el punto de pulso, al cerrar la lectura. Es la de mayor difusión del mazo: se percibe a distancia y no conviene repetirla."},
+ ritual:"Di hacia dónde vas en una sola frase. Si no te cabe en una frase, todavía no es una dirección: es un deseo.",
+ dosis:"Dos atomizaciones. Es la de mayor difusión del mazo: se percibe a distancia y no conviene repetirla."},
 
 justicia:{n:"La Justicia",num:"VIII",or:"F",lex:"Verdad en Equilibrio",reg:"Luminosa",
- fam:"Floral lavanda aromático",famKey:"florales",estado:"venta",piel:false,
+ fam:"Floral lavanda aromático",famKey:"florales",estado:"venta",piel:true,
  frase:"Ver con claridad también exige responder por lo que eliges.",
  predomina:"Lavanda",
- lectura:"Aparece ante decisiones, acuerdos, límites o conflictos que necesitan hechos y no solo impulsos. Te invita a distinguir lo justo de lo conveniente, reconocer tu parte y aceptar que toda elección tiene consecuencias. No habla de castigo ni de recompensa automática: habla de coherencia entre lo que sabes, lo que dices y lo que haces.",
+ lectura:"Esta carta no premia ni castiga: muestra. Pone frente a frente lo que sabes, lo que dices y lo que haces, y después se queda esperando a que notes la distancia. Habla de coherencia, no de merecimiento, y de que toda elección deja consecuencia.",
  aroma:"Estructurada y decidida. Mandarina y lavanda abren con nitidez; azahar y jazmín suavizan el centro antes de asentarse sobre vainilla, almizcle blanco y cedro. Equilibrio entre precisión y calidez.",
  sella:"Miro los hechos, asumo mi parte y elijo con equilibrio.",
  p:["Mandarina · Lavanda","Azahar · Jazmín","Vainilla · Almizcle blanco · Cedro"],
- ritual:"Dos atomizaciones sobre el punto de pulso, al cerrar la lectura. Su equilibrio es exacto: cualquier otra esencia encima lo inclina."},
+ ritual:"Reconoce tu parte en algo que aún duele. Solo la tuya: la ajena no es tuya ni para cargarla ni para perdonarla.",
+ dosis:"Dos atomizaciones. Su equilibrio es exacto; llevarla sola es lo que mejor le sienta."},
 
 ermitano:{n:"El Ermitaño",num:"IX",or:"M",lex:"Claridad Interior",reg:"Profunda",
  fam:"Amaderado mineral",famKey:"amaderadas",estado:"venta",piel:true,
  frase:"Alejarte del ruido no es retirarte de la vida; es volver a tu verdad.",
  predomina:"Vetiver y mineral seco",
- lectura:"Aparece cuando las respuestas externas ya no alcanzan. Te invita a detenerte, apartarte del ruido y reconocer qué dirección nace realmente de ti. La pausa no es estancamiento: es discernimiento.",
+ lectura:"Hay una voz que lleva meses hablando bajo. Es el retiro que no es huida: apagar el ruido hasta que se oiga lo que nunca fue nuevo, solo inaudible entre tanto. La pausa no es estancamiento; es la condición para distinguir qué dirección es tuya.",
  aroma:"Terrosa y silenciosa. Naranja, toronja y pimienta se encuentran con pelargonio y una faceta de pedernal, sobre cedro, vetiver y benzoína. Piedra mojada, raíz, aire de montaña.",
  sella:"Me doy espacio para escuchar la dirección que nace de mí.",
  p:["Naranja · Toronja · Pimienta","Pelargonio · Pedernal","Cedro · Vetiver · Benzoína"],
- ritual:"Dos atomizaciones sobre el punto de pulso, al cerrar la lectura. Su destello cítrico se apaga pronto: lo que permanece es la parte seca y mineral."},
+ ritual:"Pregúntate qué sabrías si nadie opinara. Llévalo los días en que necesites estar con menos gente de la que te toca.",
+ dosis:"Dos atomizaciones. Su destello cítrico se apaga pronto: lo que permanece es la parte seca y mineral."},
 
 rueda:{n:"La Rueda de la Fortuna",num:"X",or:"U",lex:"Aceptar el Giro",reg:"Profunda",
- fam:"Gourmand praliné especiado",famKey:"gourmand",estado:"venta",piel:false,
+ fam:"Gourmand praliné especiado",famKey:"gourmand",estado:"venta",piel:true,
  frase:"Nada permanece inmóvil; tu poder está en cómo respondes al giro.",
  predomina:"Praliné y haba tonka",
- lectura:"Aparece cuando las circunstancias cambian, un ciclo vuelve a moverse o algo inesperado altera la dirección prevista. Puede traer oportunidad o incertidumbre, pero no promete buena suerte automática. Te recuerda que no controlas cada giro; sí puedes reconocer el momento, ajustar tu posición y participar conscientemente en lo que comienza.",
- aroma:"Dorada y envolvente. Una especia seca, más cercana a la pimienta que a la canela, abre sobre haba tonka; después todo gira despacio hacia el praliné y la vainilla, y al final aparece un floral que nadie esperaba. Como algo que lleva tiempo reposando y todavía no termina de transformarse.",
+ lectura:"No promete suerte: anuncia movimiento. Es el giro que ya empezó sin consultarte, y la distancia enorme que hay entre resistirlo y acomodarte dentro de él. No controlas cada vuelta; sí puedes reconocer el momento y ajustar tu posición.",
+ aroma:"Dorada y envolvente. Una especia seca donde la pimienta pesa más que la canela abre sobre haba tonka; después todo gira despacio hacia el praliné y la vainilla, y al final aparece un floral que nadie esperaba. Como algo que lleva tiempo reposando y todavía no termina de transformarse.",
  sella:"Acepto el giro, reconozco lo que cambia y respondo sin aferrarme.",
- p:["Especias · Canela","Haba tonka · Praliné","Vainilla · Sándalo"],
- ritual:"Dos atomizaciones sobre el punto de pulso, al cerrar la lectura. Su cierre floral llega tarde: no la juzgues por la salida. Es el gourmand unisex del mazo; El Diablo es el masculino."},
+ p:["Especias secas · Canela y pimienta","Haba tonka · Praliné","Vainilla · Sándalo"],
+ ritual:"Nombra algo que ya está girando y que no quieres mirar. Decirlo no lo detiene, pero te sitúa dentro del giro.",
+ dosis:"Dos atomizaciones. Su cierre floral llega tarde: no la juzgues por la salida."},
 
 fuerza:{n:"La Fuerza",num:"XI",or:"F",lex:"Coraje Sereno",reg:"Profunda",
  fam:"Floral gourmand",famKey:"gourmand",estado:"venta",piel:true,
  frase:"No necesitas negar lo que sientes; necesitas sostenerlo sin perderte.",
  predomina:"Iris y praliné",
- lectura:"Aparece ante un conflicto, un miedo, un impulso o una situación que pone a prueba tu centro. No habla de imponerte ni de vencer: habla de relacionarte con lo que sientes sin permitir que eso gobierne tus decisiones.",
+ lectura:"La mano sobre el hocico del león no aprieta. Es el coraje que no levanta la voz porque no necesita convencer a nadie de que está ahí, ni siquiera a quien lo lleva. No habla de vencer lo que sientes: habla de sostenerlo sin que gobierne.",
  aroma:"Cálida y firme. Pera y grosella negra abren sobre iris, jazmín y azahar; el praliné, la vainilla y el pachulí sostienen. Dulzura con estructura — presencia que no necesita alzar la voz.",
  sella:"Actúo desde mi centro; el miedo y el impulso no deciden por mí.",
  p:["Pera · Grosella negra","Iris · Jazmín · Azahar","Praliné · Vainilla · Pachulí"],
- ritual:"Dos atomizaciones sobre el punto de pulso, al cerrar la lectura. Su fondo permanece mucho después de que el resto se ha ido."},
+ ritual:"Di en voz baja lo que sientes hoy, y no decidas nada con eso. Sostenerlo sin que gobierne ya es todo el trabajo.",
+ dosis:"Dos atomizaciones. Su fondo permanece mucho después de que el resto se ha ido."},
 
 colgado:{n:"El Colgado",num:"XII",or:"U",lex:"Rendición Consciente",reg:"Profunda",
- fam:"Almizclado transparente",famKey:"minerales",estado:"venta",piel:false,
+ fam:"Almizclado transparente",famKey:"minerales",estado:"venta",piel:true,
  frase:"Detenerte no es perder el rumbo; es permitir que cambie tu manera de mirar.",
  predomina:"Almizcle de piel",
- lectura:"Surge cuando insistir ya no produce avance y una pausa puede revelar lo que la acción constante oculta. Habla de espera, entrega y cambio de perspectiva, no de resignación pasiva. Te pide soltar por un momento el resultado, observar desde otro ángulo y permitir que una comprensión nueva reorganice el camino.",
+ lectura:"Dejar de forzar no es rendirse. Es la pausa en la que no ocurre nada por fuera mientras por dentro se reordena todo, y que no se deja apurar de ninguna manera. Soltar el resultado por un momento es lo que permite ver desde otro ángulo.",
  aroma:"Abstracta e íntima. Pera, manzana y bergamota apenas se insinúan antes de fundirse con jazmín y musgo. Ambroxan y almizcle dejan una presencia de piel limpia que aparece, se retira y cambia con quien la lleva.",
  sella:"Suelto la urgencia, acepto la pausa y permito que aparezca otra mirada.",
  p:["Pera · Manzana · Bergamota","Jazmín · Musgo","Ambroxan · Almizcle"],
- ritual:"Dos atomizaciones sobre el punto de pulso, al cerrar la lectura. Una parte de la gente no percibe ciertos almizcles: si dejas de olerla, sigue ahí."},
+ ritual:"Pregúntate qué verías desde el otro lado de lo que miras. No cambies nada todavía: solo mira desde ahí.",
+ dosis:"Dos atomizaciones. Hay quien no percibe ciertos almizcles y deja de olerla antes que los demás."},
 
 muerte:{n:"La Muerte",num:"XIII",or:"U",lex:"Transformación Inevitable",reg:"Profunda",
  fam:"Mineral salino",famKey:"minerales",estado:"venta",piel:true,
  frase:"Algo debe terminar para que lo siguiente encuentre espacio.",
  predomina:"Sal marina y salvia",
- lectura:"Aparece ante un cierre, un duelo, una identidad que cambia o una etapa que ya entregó todo lo que podía. No anuncia una muerte literal. Revela que conservar una forma agotada impide el movimiento de la vida. Te invita a honrar lo que fue, despedirte sin negarlo y abrir espacio para una transformación real.",
+ lectura:"Algo terminó hace tiempo y sigues sosteniéndolo. No anuncia un final: señala uno ya ocurrido, y pide soltar la forma para que la vida siga moviéndose. No habla de una muerte literal, sino de lo que cuesta conservar algo que ya entregó todo lo que tenía.",
  aroma:"Fresca, mineral y despojada. La ambreta abre con una textura suave de piel; la salvia aporta una sequedad verde y la sal marina deja una estela limpia y ligeramente amaderada. Un paisaje donde el viento ya borró las últimas huellas.",
  sella:"Honro lo que termina, libero su forma y abro espacio para lo que sigue.",
  p:["Ambreta","Salvia","Sal marina · Almizcle · Madera seca"],
- ritual:"Dos o tres atomizaciones sobre el punto de pulso, al cerrar la lectura. Es la más ligera del mazo y la única sin una gota de dulzor: la que más admite repetirse durante el día."},
+ ritual:"Nombra una cosa que ya terminó y que sigues cargando. Soltarla viene después; hoy basta con verla entera.",
+ dosis:"Dos o tres atomizaciones. Es la más ligera del mazo y la única sin una gota de dulzor: la que más admite repetirse."},
 
 templanza:{n:"La Templanza",num:"XIV",or:"U",lex:"Equilibrio Alquímico",reg:"Profunda",
- fam:"Ambarado dulce mineral",famKey:"minerales",estado:"venta",piel:false,
+ fam:"Ambarado dulce mineral",famKey:"minerales",estado:"venta",piel:true,
  frase:"El equilibrio no es inmovilidad; es aprender a mezclar sin perder la esencia.",
  predomina:"Azafrán y ámbar mineral",
- lectura:"Aparece cuando necesitas regular el ritmo, sanar una tensión o reconciliar partes que parecen incompatibles. No propone tibieza ni pasividad: habla de encontrar la medida precisa para que fuerzas distintas cooperen. La transformación se vuelve sostenible cuando no intentas acelerarla ni detenerla.",
+ lectura:"Dos cosas que no deberían poder convivir conviven, y existe una medida exacta en la que por fin dejan de pelearse. Eso es proporción, no tibieza: la transformación se vuelve sostenible cuando dejas de acelerarla y de detenerla a la vez.",
  aroma:"Azafrán y un ámbar mineral, seco y luminoso, con un borde limpio que no se parece a ninguno de sus componentes. No es la suma de sus partes: es lo que queda después de que se transformaron. Al final se suaviza en un dulzor que no es de nadie en particular.",
  sella:"Regulo mi energía, encuentro la medida y permito que lo distinto coopere.",
  p:["Azafrán · Jazmín","Ámbar mineral","Maderas ambaradas · Almizcle"],
- ritual:"Una atomización sobre el punto de pulso, al cerrar la lectura. Su salida es aguda: lo suyo llega al minuto. Es de las más difusivas del mazo: en una sala pequeña, una basta."},
+ ritual:"Identifica las dos cosas de las que tiras a la vez. No elijas entre ellas todavía: corrige la proporción.",
+ dosis:"Una atomización. Su salida es aguda y lo suyo llega al minuto; es de las más difusivas del mazo."},
 
 diablo:{n:"El Diablo",num:"XV",or:"M",lex:"Deseo Revelado",reg:"Profunda",
  fam:"Gourmand especiado",famKey:"gourmand",estado:"venta",piel:true,
  frase:"Aquello que puedes nombrar deja de gobernarte desde la sombra.",
  predomina:"Miel",
- lectura:"Revela un deseo, apego, temor o patrón que tiene más poder sobre ti del que quisieras reconocer. No aparece para condenarte, sino para mostrarte dónde entregaste tu libertad. Mirar la sombra es el primer acto para elegir distinto.",
+ lectura:"No es el mal: es el deseo, y lo que nos ata precisamente porque nos gusta. Es mirar de frente aquello que preferirías no tener que nombrar delante de nadie. No aparece para condenarte: aparece para mostrarte dónde entregaste tu libertad.",
  aroma:"Intensa y magnética. Especias y tabaco sobre flor de tabaco, cacao y haba tonka. La miel, la vainilla y las maderas se adhieren a la piel con una dulzura oscura que no se retira cuando decides que ya fue suficiente.",
  sella:"Reconozco mi deseo y elijo con libertad, no desde la dependencia.",
  p:["Especias · Tabaco","Flor de tabaco · Miel · Haba tonka","Vainilla · Maderas"],
- ritual:"Una o dos atomizaciones sobre el punto de pulso, al cerrar la lectura. Es la más densa del mazo: dos son muchas en un espacio pequeño."},
+ ritual:"Nombra una cosa que quieras hoy, sin justificarla ante nadie. Si cambia de un mes a otro, estás escuchando.",
+ dosis:"Una o dos atomizaciones. Es la más densa del mazo: dos son muchas en un espacio pequeño."},
 
 torre:{n:"La Torre",num:"XVI",or:"M",lex:"Ruptura Necesaria",reg:"Profunda",
  fam:"Cuero crudo",famKey:"cuero",estado:"venta",piel:true,
  frase:"Lo que se rompe revela la verdad que la estructura ya no podía contener.",
  predomina:"Cuero y azafrán",
- lectura:"Aparece cuando una estructura, una certeza, un vínculo o una forma de vivir ya no puede sostenerse. No anuncia un castigo: muestra el punto en que seguir fingiendo estabilidad cuesta más que aceptar la ruptura. Lo inesperado puede sacudirte, pero también deja visible aquello que seguía en pie solo por costumbre o por miedo.",
+ lectura:"Llega un punto en que fingir que algo se sostiene cuesta más que dejarlo caer. Es la ruptura que no es castigo: es lo que queda libre cuando la estructura cede. Lo inesperado sacude, pero también deja visible lo que seguía en pie solo por costumbre.",
  aroma:"Incisiva y visceral. Azafrán y frambuesa irrumpen antes de que el jazmín se funda con gamuza, cuero oscuro y maderas ambaradas. No entra en silencio: corta el aire y obliga a prestar atención.",
  sella:"Dejo caer lo que ya no es verdad y conservo aquello que resiste la revelación.",
  p:["Azafrán · Frambuesa","Jazmín","Cuero · Gamuza · Maderas ambaradas"],
- ritual:"Una atomización sobre el punto de pulso, al cerrar la lectura. Es áspera por diseño y no admite exceso: con una se percibe durante horas."},
+ ritual:"Reconoce algo que sostienes solo por costumbre. Si te incomoda leer esta frase, la carta ya está trabajando.",
+ dosis:"Una atomización. Es áspera por diseño y no admite exceso: con una se percibe durante horas."},
 
 estrella:{n:"La Estrella",num:"XVII",or:"F",lex:"Confianza Renovada",reg:"Luminosa",
  fam:"Floral fresco ambarado",famKey:"florales",estado:"venta",piel:true,
  frase:"Aun después de la noche, algo en ti recuerda el camino.",
  predomina:"Jazmín",
- lectura:"Surge después del cansancio, la pérdida de dirección o una etapa difícil. No promete que todo esté resuelto: revela que todavía existe una posibilidad en la que puedes volver a confiar. Te invita a avanzar con apertura y sin fingir.",
+ lectura:"No promete que todo salga bien. Promete que algo quedó encendido. Es la luz pequeña que orienta justo después de la noche que parecía que no iba a terminar. No resuelve lo que quedó roto: devuelve la posibilidad de volver a mirar hacia adelante.",
  aroma:"Luminosa y envolvente. La pimienta rosa abre sobre un jazmín amplio que se asienta en pachulí ambarado, almizcles blancos y vainilla. El aire limpio que queda después de la tormenta.",
  sella:"Vuelvo a confiar en mi camino y en la luz que permanece en mí.",
  p:["Pimienta rosa","Jazmín","Pachulí ambarado · Almizcles blancos · Vainilla"],
- ritual:"Dos atomizaciones sobre el punto de pulso, al cerrar la lectura. Su brillo inicial baja pronto y deja una estela suave que dura todo el día."},
+ ritual:"Nombra una cosa tuya que siga encendida. Una sola, y que sea verdad: las demás no hacen falta todavía.",
+ dosis:"Dos atomizaciones. Su brillo inicial baja pronto y deja una estela suave que dura todo el día."},
 
 luna:{n:"La Luna",num:"XVIII",or:"F",lex:"Intuición en la Niebla",reg:"Profunda",
- fam:"Floral oscuro",famKey:"florales",estado:"venta",piel:false,
+ fam:"Floral oscuro",famKey:"florales",estado:"venta",piel:true,
  frase:"No todo lo verdadero se revela con claridad inmediata.",
  predomina:"Trufa y orquídea negra",
- lectura:"Surge cuando hay información incompleta, temores, proyecciones, sueños o emociones que distorsionan lo que ves. No te pide creer ciegamente cada presentimiento; te invita a caminar sin fabricar certezas, escuchar lo que emerge y distinguir la intuición profunda del miedo que necesita una historia.",
+ lectura:"Lo que sientes no siempre es cierto, y lo que temes no siempre es invento. Es el arcano de los presentimientos, de los sueños y del miedo que se fabrica una historia para sostenerse. No te pide creer cada corazonada: te pide distinguir cuál es cuál.",
  aroma:"Hipnótica y ambigua. Trufa negra, grosella y bergamota abren una puerta que nunca termina de abrirse; orquídea negra, gardenia e ylang forman un centro oscuro. Pachulí, incienso, vainilla y sándalo dejan una estela donde nada se revela por completo.",
  sella:"Camino sin exigir certezas y escucho lo que la niebla despierta en mí.",
  p:["Trufa negra · Grosella · Bergamota","Orquídea negra · Gardenia · Ylang-ylang","Pachulí · Incienso · Vainilla · Sándalo"],
- ritual:"Una atomización sobre el punto de pulso, al cerrar la lectura. Es muy densa: se abre despacio y crece durante la primera hora."},
+ ritual:"Elige un presentimiento tuyo y pregúntate si es intuición, o si es miedo que ya se fabricó una historia.",
+ dosis:"Una atomización. Es muy densa: se abre despacio y crece durante la primera hora."},
 
 sol:{n:"El Sol",num:"XIX",or:"U",lex:"Claridad Radiante",reg:"Luminosa",
  fam:"Cítrico té amaderado",famKey:"citricas",estado:"venta",piel:true,
  frase:"Lo que se vuelve claro también merece ser vivido y celebrado.",
  predomina:"Cítricos y té negro",
- lectura:"Surge cuando la confusión empieza a disiparse y algo puede mostrarse sin sombras: una verdad, un logro, una reconciliación o la alegría de estar presente. No promete una vida sin dificultades. Te recuerda que también existe un momento para reconocer lo que sí funciona, dejarte ver y recibir plenamente la vitalidad disponible.",
+ lectura:"No es que se acabara la sombra: es que por fin hay luz suficiente para mirarla. Es lo que ya puede mostrarse entero, y el permiso para celebrarlo sin pedir disculpas. No promete una vida sin dificultad; señala lo que sí está funcionando ahora.",
  aroma:"Brillante y expansiva. Bergamota, limón y mandarina se elevan sobre neroli, jengibre y una canela suave. El té negro, el guayaco y el ambroxan aportan profundidad sin apagar la luz.",
  sella:"Reconozco lo que es verdadero, recibo su luz y me permito celebrarlo.",
  p:["Bergamota · Limón · Mandarina","Neroli · Jengibre · Canela","Té negro · Ambroxan · Guayaco"],
- ritual:"Dos atomizaciones sobre el punto de pulso, al cerrar la lectura. Es la más luminosa del mazo y la que mejor funciona de día."},
+ ritual:"Di en voz alta una cosa que esté funcionando ahora. Solo una, y que sea cierta: cuesta más de lo que parece.",
+ dosis:"Dos atomizaciones. Es la más luminosa del mazo y la que mejor funciona de día."},
 
 juicio:{n:"El Juicio",num:"XX",or:"U",lex:"Llamado al Renacer",reg:"Profunda",
  fam:"Amaderado ahumado dulce",famKey:"amaderadas",estado:"venta",piel:true,
  frase:"Lo que ha cumplido su ciclo no necesita seguir definiéndote.",
  predomina:"Madera ahumada y castaña",
- lectura:"Aparece cuando una experiencia pasada pide ser comprendida de otra manera. Puede señalar una llamada, una decisión definitiva, una reconciliación contigo o el momento de dejar de cargar una versión antigua de tu historia. No borra lo vivido: lo integra para que puedas responder desde quién eres ahora.",
+ lectura:"Una historia vieja dejó de explicarte. Es el arcano de la llamada: no borra lo vivido, lo integra, y pide que respondas desde quien eres ahora y no desde quien fuiste. Lo que ha cumplido su ciclo no necesita seguir definiéndote.",
  aroma:"Cálida y transformadora. Pimienta rosa, flor de naranjo y clavo encienden una madera donde aparecen castaña tostada, guayaco y cade. Vainilla, bálsamo del Perú y cashmeran conservan el calor de las brasas cuando el humo se retira.",
  sella:"Libero lo que ya cumplió su ciclo y respondo a lo que me llama ahora.",
  p:["Pimienta rosa · Flor de naranjo · Clavo","Castaña tostada · Guayaco · Cade","Vainilla · Bálsamo del Perú · Cashmeran"],
- ritual:"Dos atomizaciones sobre el pecho y el cuello, al cerrar la lectura. Identifica aquello que ha cumplido su ciclo y formula una sola intención de renovación."},
+ ritual:"Antes de ponértelo, di en voz baja una versión tuya que ya no te describe. Déjala ahí y sigue con el día.",
+ dosis:"Dos atomizaciones sobre el pecho y el cuello."},
 
 mundo:{n:"El Mundo",num:"XXI",or:"U",lex:"Integración Plena",reg:"Luminosa",
- fam:"Amaderado de cedro y almizcle con higo",famKey:"amaderadas",estado:"venta",piel:false,
+ fam:"Amaderado de cedro y almizcle con higo",famKey:"amaderadas",estado:"venta",piel:true,
  frase:"Completar es reconocer que todas tus partes llegaron contigo hasta aquí.",
  predomina:"Cedro, almizcle e higo",
- lectura:"Aparece al concluir una etapa, alcanzar una meta o comprender el sentido de un recorrido. Habla de logro, pertenencia e integración, no de una perfección inmóvil. Te invita a reconocer lo aprendido, ocupar tu lugar y permitir que el final se convierta en plataforma para el ciclo siguiente.",
+ lectura:"Haber llegado con todas tus partes, incluidas las que no habrías elegido llevar, es distinto de haber llegado perfecto. Es el cierre que ya es el principio del ciclo siguiente: reconocer lo aprendido y ocupar tu lugar convierte un final en plataforma.",
  aroma:"Completa y serena. Higo y bergamota abren con luz; el cedro y el almizcle toman el centro, y el vetiver y el heno quedan al fondo, secos. Lo luminoso y lo profundo dejan de competir. Horas después, lo que queda es higo con un hilo de incienso.",
  sella:"Reconozco lo que he completado, integro lo aprendido y ocupo mi lugar.",
- p:["Higo · Bergamota · Laurel","Cedro · Almizcle","Vetiver · Heno · Té negro"],
- ritual:"Dos atomizaciones sobre el punto de pulso, al cerrar la lectura. Es el que más dura de los nuevos: al final queda higo con incienso."}
+ p:["Higo · Bergamota · Laurel","Cedro · Almizcle","Vetiver · Heno · Té negro · Incienso"],
+ ritual:"Nombra una parte tuya que llegó contigo hasta aquí y que no habrías elegido. Esa también cuenta como logro.",
+ dosis:"Dos atomizaciones. Es el que más dura de los nuevos: al final queda higo con incienso."}
 };
 
 /* El Umbral — bruma del Ritual de Apertura. No es un arcano. */
@@ -1168,11 +1206,12 @@ const UMBRAL={n:"El Umbral",lex:"Presencia y Apertura",
  fam:"Resinoso amaderado · Bruma ambiental",estado:"venta",
  frase:"Antes de preguntar, hacer sitio.",
  predomina:"Palo santo e incienso",
- lectura:"No es un arcano. Es el momento previo: cuando las cartas todavía están cerradas y el espacio no ha empezado a ser un espacio de lectura. Acompaña la apertura del ritual, no la provoca.",
+ lectura:"No es un arcano. Es el instante anterior: las cartas todavía boca abajo, la pregunta aún sin decir, y un espacio que todavía no es un espacio de lectura. Acompaña la apertura del ritual; no la provoca.",
  aroma:"Seca, limpia y amarga en el buen sentido. Palo santo y cedro con resina e incienso. Más que perfumar la habitación, la despeja. Se atomiza en el espacio antes de empezar; nunca en la piel.",
  sella:"Hago sitio y abro el espacio de la lectura.",
  p:["Palo santo · Cedro seco","Incienso · Resinas","Ládano · Maderas ahumadas"],
- ritual:"Dos o tres atomizaciones en el aire de la sala, antes de que la consultante se siente. No sobre la piel, no sobre las cartas, no sobre el mantel."};
+ ritual:"Mientras se asienta en el aire, formula la pregunta con la que llegas. El aroma acompaña la apertura; no la produce.",
+ dosis:"Dos o tres atomizaciones en el aire de la sala, antes de que la consultante se siente."};
 
 const TODOS = Object.keys(F);
 
@@ -1218,20 +1257,27 @@ const CAPAS=['colgado','muerte','sacerdotisa'];
 const EXPANSION=[
  {capa:'sacerdotisa',sobre:'estrella',valor:'ALTO',
   efecto:"El sándalo aporta un eje amaderado que La Estrella no tiene por sí sola, y le da cuerpo a un floral fresco que de otro modo baja pronto. El resultado es más cálido que luminoso.",
-  porque:"Las dos esencias están en venta y ninguna repite el material de firma de la otra."},
+  porque:"Ninguna de las dos repite el material de firma de la otra, así que el sándalo añade en lugar de reforzar."},
+ {capa:'colgado',sobre:'estrella',valor:'ALTO',
+  efecto:"Alarga un floral fresco que por sí solo baja pronto y lo acerca a la piel. No le cambia el color: lo sostiene más tiempo.",
+  porque:"Es la otra lectura de La Estrella. Donde La Sacerdotisa la vuelve más cálida y amaderada, El Colgado la deja donde está: los dos comparten el registro de almizcle, así que refuerza en vez de transformar. Elige según lo que busques."},
  {capa:'colgado',sobre:'fuerza',valor:'ALTO',
   efecto:"El almizcle extiende el gourmand floral y le añade una capa de piel limpia. El dulzor se percibe más bajo sin que desaparezca.",
-  porque:"Simple sobre complejo, que es la única superposición predecible. Ten en cuenta que una parte de la gente no percibe ciertos almizcles."},
+  porque:"Simple sobre complejo, que es el orden con menos riesgo. Ten en cuenta que una parte de la gente no percibe ciertos almizcles."},
  {capa:'muerte',sobre:'ermitano',valor:'ALTO',
-  efecto:"La sal marina desplaza el mineral de la piedra hacia la costa. El eje seco se mantiene y se abre.",
-  porque:"Mineral sobre mineral amaderado: es la superposición más predecible de La Muerte."},
- {capa:'sacerdotisa',sobre:'emperatriz',valor:'MEDIO',
-  efecto:"El sándalo cremoso redondea un chipre que por sí solo es seco de pachulí. Gana calidez sin perder estructura.",
-  porque:"Sándalo sobre pachulí es un acorde clásico y estable. Las dos están en venta."},
+  efecto:"El pedernal del Ermitaño se encuentra con la sal marina en el fondo: mineral sobre mineral. El eje seco se refuerza en vez de cambiar de color.",
+  porque:"Mineral sobre mineral amaderado: es la que menos sorpresas debería dar de La Muerte."},
+ {capa:'muerte',sobre:'carro',valor:'ALTO',
+  efecto:"La ambreta compite con la salida cítrica y la deja más apagada; la sal marina llega después, en el fondo. El Carro arranca menos brillante y seca más salino.",
+  porque:"Aromático mineral sobre aromático amaderado. Es la que más cambia el carácter de su base sin enturbiarla: útil si te gusta El Carro pero lo encuentras demasiado expuesto."},
  {capa:'sacerdotisa',sobre:'enamorados',valor:'ALTO',
   efecto:"Rosa y sándalo es uno de los acordes más estables de la perfumería. El sándalo recoge la rosa y le da fondo donde el incienso la dejaba seca.",
-  porque:"Técnicamente es la más sólida del mapa. Las dos comparten una manera de construir muy legible, así que el resultado se lee claro."}
+  porque:"Técnicamente es la más sólida del mapa. Las dos comparten una manera de construir muy legible, así que el resultado se lee claro."},
+ {capa:'sacerdotisa',sobre:'emperatriz',valor:'MEDIO',
+  efecto:"El sándalo cremoso redondea un chipre que por sí solo es seco de pachulí. Gana calidez sin perder estructura.",
+  porque:"Sándalo sobre pachulí es un acorde clásico y estable."}
 ];
+
 
 /* ══════════════ FRASCO · EL UMBRAL ══════════════ */
 /* El Umbral tiene carta propia: es la apertura de la lectura, no un frasco. */
@@ -1378,8 +1424,7 @@ function expCard(e,i){
     <div class="exp-meta"><b>CÓMO</b>Dos atomizaciones de ${base.n}; espera a que asiente y añade una de ${capa.n} sobre el mismo punto. Nunca una y una: a peso igual la capa deja de modificar y compite.</div>
     <div class="exp-meta"><b>POR QUÉ ESTE PAR</b>${e.porque}</div>
     <div class="exp-ev">
-      <span class="ev-dot"></span>Combinación propuesta, no probada en piel.
-      ${enPiel?'Las dos esencias sí están evaluadas en piel por separado.':'Alguna de las dos todavía no se ha evaluado en piel.'}
+      <span class="ev-dot"></span>Las dos esencias están probadas en piel por separado. La combinación es una propuesta nuestra: todavía sin validación conjunta.
     </div>
     ${falta.length?`<div class="exp-falta">Hoy no está en venta: ${falta.join(' · ')}.</div>`:''}
     <div class="prod-buy">
@@ -1439,7 +1484,8 @@ function openSheet(k){
         <div><b>FONDO</b><span>${f.p[2]}</span></div>
       </div>
       <div class="blk ritual"><h4>LO QUE SELLA</h4><p>${f.sella}</p></div>
-      <div class="blk"><h4>RITUAL DE APLICACIÓN</h4><p>${f.ritual}</p></div>
+      <div class="blk"><h4>EL RITUAL</h4><p>${f.ritual}</p>
+        <p class="sh-dosis">${f.dosis}</p></div>
       ${expBlk}
       <div class="sheet-buy">
         <span class="sheet-price">$500 <small style="font-family:'Cormorant SC',serif;font-size:10px;letter-spacing:.2em;color:var(--gold-dim)">MXN · 100 ML</small></span>
@@ -1488,59 +1534,67 @@ const QMAP={
 };
 /* Para Ella: femeninos + unisex + duales. Para Él: masculinos + unisex + duales.
    Las uniones viajan con la línea de su orientación. */
-const LINEA={
-  F:TODOS.filter(k=>['F','U','D'].includes(F[k].or)),
-  M:TODOS.filter(k=>['M','U','D'].includes(F[k].or))
-};
+/* Las dos puertas: quien ya tuvo su lectura y quien llega por afinidad.
+   El género NO filtra el resultado — qué carta apareció y qué te gusta oler
+   son dos ejes distintos. La orientación solo filtra el catálogo. */
 
-/* Una sola ruta: la que parte de una lectura real.
-   El arcano no se calcula; se reconoce en la mesa. */
-function quizStart(){quizRutaTarot();}
+/* Resolución de las dos colisiones de celda: El Emperador pasa al tema del
+   comienzo que necesita forma; El Hierofante, al matiz de soltar lo heredado. */
+QMAP.emperador.t=[3,1];
+QMAP.hierofante.m=[3,1];
 
-/* ─── PASO 1 · la línea ─── */
-function quizRutaTarot(){
+function quizStart(){
   qz={};
   stage.innerHTML=`<div class="fade">
-    <div class="qstep">RUTA TAROT · PASO 1 DE 3</div>
-    <div class="qq">¿Para quién es esta lectura?</div>
-    <p class="qhint">Cada línea reúne sus arcanos propios más todos los que no tienen género.</p>
-    <div class="qopts">
-      <div class="qopt" tabindex="0" onclick="quizG('F')" onkeydown="if(event.key==='Enter')quizG('F')">
-        <div class="qopt-ic">♀</div><div><div class="qopt-t">Para Ella</div>
-        <div class="qopt-s">Quince arcanos: los seis femeninos y los nueve que no tienen género.</div></div></div>
-      <div class="qopt" tabindex="0" onclick="quizG('M')" onkeydown="if(event.key==='Enter')quizG('M')">
-        <div class="qopt-ic">♂</div><div><div class="qopt-t">Para Él</div>
-        <div class="qopt-s">Dieciséis arcanos: los siete masculinos y los nueve que no tienen género.</div></div></div>
+    <div class="qstep">PUNTO DE PARTIDA</div>
+    <div class="qq">¿Por dónde entras?</div>
+    <p class="qhint">Las dos puertas llevan al mismo sitio.</p>
+    <div class="ruta-sel">
+      <button class="ruta-btn" onclick="irCatalogo()">
+        <div class="ruta-ic">☽</div>
+        <div>
+          <div class="ruta-t">Ya sé qué carta apareció</div>
+          <div class="ruta-s">Tu tarotista la nombró en la mesa. Ve directo a los veintidós y busca la tuya.<br><em>Esa carta manda sobre cualquier otra cosa que diga esta página</em></div>
+        </div>
+      </button>
+      <button class="ruta-btn" onclick="quizRutaTarot()">
+        <div class="ruta-ic">✦</div>
+        <div>
+          <div class="ruta-t">No estoy seguro, o aún no he tenido lectura</div>
+          <div class="ruta-s">Dos preguntas para proponerte el arcano que más se acerca a tu momento.<br><em>Es una afinidad, no una lectura de tarot</em></div>
+        </div>
+      </button>
     </div>
-    </div>`;
+  </div>`;
 }
+function irCatalogo(){go('esencias');}
 
-/* ─── PASO 2 · el tema ─── */
-function quizG(g){
-  qz.g=g;
+/* ─── PASO 1 · el tema ─── */
+function quizRutaTarot(){
+  qz={};
   const opts=TEMAS.map((t,i)=>
     `<div class="qopt" tabindex="0" onclick="quizT(${i})" onkeydown="if(event.key==='Enter')quizT(${i})">
       <div class="qopt-ic">${t[0]}</div><div><div class="qopt-t">${t[1]}</div><div class="qopt-s">${t[2]}</div></div></div>`).join('');
   stage.innerHTML=`<div class="fade">
-    <div class="qstep">RUTA TAROT · PASO 2 DE 3</div>
-    <div class="qq">¿Qué trajo tu lectura?</div>
-    <p class="qhint">Lo que estuvo en el centro de la mesa.</p>
+    <div class="qstep">PASO 1 DE 2</div>
+    <div class="qq">¿Qué está en el centro ahora?</div>
+    <p class="qhint">Lo que de verdad ocupa el momento, no lo que te gustaría que ocupara.</p>
     <div class="qopts qopts-3">${opts}</div>
-    <button class="qback" onclick="quizRutaTarot()">← Volver</button></div>`;
+    <button class="qback" onclick="quizStart()">← Volver</button></div>`;
 }
 
-/* ─── PASO 3 · el matiz ─── */
+/* ─── PASO 2 · el matiz ─── */
 function quizT(t){
   qz.t=t;
   const opts=MATICES.map((m,i)=>
     `<div class="qopt" tabindex="0" onclick="quizM(${i})" onkeydown="if(event.key==='Enter')quizM(${i})">
       <div class="qopt-ic">${m[0]}</div><div><div class="qopt-t">${m[1]}</div><div class="qopt-s">${m[2]}</div></div></div>`).join('');
   stage.innerHTML=`<div class="fade">
-    <div class="qstep">RUTA TAROT · PASO 3 DE 3</div>
+    <div class="qstep">PASO 2 DE 2</div>
     <div class="qq">¿Qué quieres llevar contigo?</div>
-    <p class="qhint">La energía que tu esencia anclará después de la lectura.</p>
+    <p class="qhint">La energía que la esencia va a sostener después.</p>
     <div class="qopts">${opts}</div>
-    <button class="qback" onclick="quizG('${qz.g}')">← Volver</button></div>`;
+    <button class="qback" onclick="quizRutaTarot()">← Volver</button></div>`;
 }
 
 function puntuarTarot(k,t,m){
@@ -1549,17 +1603,17 @@ function puntuarTarot(k,t,m){
 }
 function quizM(m){
   qz.m=m;
-  const pool=LINEA[qz.g];
-  const orden=pool.slice().sort((a,b)=>puntuarTarot(b,qz.t,m)-puntuarTarot(a,qz.t,m)||pool.indexOf(a)-pool.indexOf(b));
+  /* Compiten los veintidós. Sin filtro de línea. */
+  const orden=ORDEN.slice().sort((a,b)=>
+    puntuarTarot(b,qz.t,m)-puntuarTarot(a,qz.t,m)||ORDEN.indexOf(a)-ORDEN.indexOf(b));
   renderResultado(orden[0],{
-    label:'TU ARCANO ES',
-    sub:qz.g==='F'?'LÍNEA PARA ELLA':'LÍNEA PARA ÉL',
+    label:'UN ARCANO QUE RESUENA CON TU MOMENTO',
+    sub:'AFINIDAD · NO SUSTITUYE UNA LECTURA',
     alts:orden.slice(1,4),
-    back:'quizRutaTarot()'
+    back:'quizStart()'
   });
 }
 
-/* Resultado compartido por las dos rutas */
 function renderResultado(k,opt){
   const f=F[k];
   const cta=`<button class="btn solid" onclick="addToCart('${k}')"><span>AÑADIR · $500 MXN</span></button>`;
@@ -1579,6 +1633,7 @@ function renderResultado(k,opt){
     <div class="qr-lex">${f.lex.toUpperCase()} · ARCANO ${f.num} · ARCANOS DE OCTAN</div>
     <p class="qr-frase">&ldquo;${f.frase}&rdquo;</p>
     <p class="qr-desc">${f.lectura}</p>
+    ${opt.sub?`<p class="qr-cede">Si en tu lectura apareció otro arcano, ése manda. Esto es solo una propuesta de afinidad.</p>`:''}
     <p class="qr-seal">${f.sella}</p>
     ${uniBlk}
     ${opt.extra||''}
@@ -1726,9 +1781,13 @@ async function sendOrder(){
     lines.forEach(l=>body+='- '+l+'\n');
     body+=`\nTOTAL: ${money(total)}`;
     if(m)body+=`\n\nMensaje: ${m}`;
-    window.open(`mailto:${EMAIL}?subject=${encodeURIComponent(payload._subject)}&body=${encodeURIComponent(body)}`);
-    document.getElementById('ty-d').textContent='Abrimos tu correo con el pedido ya redactado: solo dale enviar y lo recibimos.';
-    finishOrder();
+    const abierta=window.open(`mailto:${EMAIL}?subject=${encodeURIComponent(payload._subject)}&body=${encodeURIComponent(body)}`);
+    /* El pedido NO se ha recibido: solo se redactó. El ritual se conserva
+       hasta que el comprador confirme, para que nadie se quede sin pedido. */
+    err.textContent = abierta===null
+      ? 'No pudimos enviarlo y tu navegador bloqueó el correo. Tu ritual sigue aquí: vuelve a intentarlo o escríbenos a '+EMAIL+'.'
+      : 'No pudimos enviarlo desde aquí, así que abrimos tu correo con el pedido ya redactado. Dale enviar: hasta entonces no nos ha llegado. Tu ritual sigue guardado.';
+    err.classList.add('on');
   }
 }
 function finishOrder(){
