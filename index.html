@@ -75,7 +75,7 @@ nav{position:sticky;top:0;z-index:60;display:flex;align-items:center;justify-con
 nav.stuck{padding:9px clamp(16px,4vw,42px);background:rgba(8,7,12,.9);border-bottom-color:var(--rule)}
 .brand{font-family:'Bodoni Moda',serif;font-weight:900;font-size:19px;letter-spacing:.55em;color:var(--gold-hi);padding-left:.55em;cursor:pointer}
 .nav-l{display:flex;align-items:center;gap:clamp(14px,2.4vw,30px)}
-.nav-l a{font-family:'Cormorant SC',serif;font-weight:600;font-size:12.5px;letter-spacing:.2em;white-space:nowrap;color:var(--txt-hi);cursor:pointer;position:relative;padding:4px 0}
+.nav-l a,.nav-r a{font-family:'Cormorant SC',serif;font-weight:600;font-size:12.5px;letter-spacing:.2em;white-space:nowrap;color:var(--txt-hi);cursor:pointer;position:relative;padding:4px 0}
 .nav-l a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);transition:width .45s var(--ease-out)}
 .nav-l a:hover{color:var(--gold-hi)}.nav-l a:hover::after{width:100%}
 .nav-cart{border:1px solid var(--gold-dim);padding:8px 16px;color:var(--gold-hi)!important;display:flex;align-items:center;gap:7px;transition:background .4s ease,color .4s ease}
@@ -83,11 +83,11 @@ nav.stuck{padding:9px clamp(16px,4vw,42px);background:rgba(8,7,12,.9);border-bot
 .nav-cart:hover{background:var(--gold);color:var(--ink)!important}
 .cc{background:var(--gold);color:var(--ink);width:17px;height:17px;border-radius:50%;display:none;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:10px;font-weight:600}
 .nav-cart:hover .cc{background:var(--ink);color:var(--gold)}
-@media(max-width:820px){.nav-l a.hide-s{display:none}}
+
 @media(max-width:560px){
   .brand{font-size:16px;letter-spacing:.4em;padding-left:.4em}
   .nav-l{gap:12px}
-  .nav-l a{font-size:11px;letter-spacing:.14em}
+  .nav-l a,.nav-r a{font-size:11px;letter-spacing:.14em}
   .nav-cart{padding:7px 12px}
 }
 
@@ -712,6 +712,46 @@ nav.stuck .brand-sub{font-size:8px}
 .exp-invita a{color:var(--gold-hi);border-bottom:1px solid var(--gold-dim)}
 .ast-arcano-sub{font-family:'Cormorant SC',serif;font-weight:600;font-size:10px;
   letter-spacing:.24em;color:var(--gold-dim);margin-bottom:12px}
+
+/* ═══════ MENÚ · escritorio intacto, móvil desplegable ═══════
+   El carrito vive fuera de .nav-l para seguir visible con el panel cerrado:
+   es la acción de compra y no debe esconderse tras un gesto. */
+nav{justify-content:flex-end;gap:clamp(14px,2.4vw,30px)}
+.brand{margin-right:auto}
+.nav-r{display:flex;align-items:center;gap:clamp(10px,2vw,18px)}
+.nav-burger{display:none;width:40px;height:40px;padding:0;background:none;border:0;cursor:pointer;
+  flex-direction:column;align-items:center;justify-content:center;gap:5px;color:var(--gold-hi)}
+.nav-burger span{display:block;width:21px;height:1.4px;background:currentColor;border-radius:2px;
+  transition:transform .38s var(--ease-out),opacity .22s ease}
+.nav-burger:focus-visible{outline:1px solid var(--gold);outline-offset:3px}
+
+@media(max-width:820px){
+  .nav-burger{display:flex}
+  /* Con el panel abierto, barra y panel son una sola superficie. */
+  nav.abierto{background:#0B0A11;border-bottom-color:transparent}
+  .nav-l{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
+    /* Opaco a propósito: un panel de menú tiene que ser legible sin depender
+       de backdrop-filter, que anidado dentro del de la barra no es fiable. */
+    background:linear-gradient(180deg,#0B0A11 0%,var(--ink) 100%);
+    border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+    box-shadow:0 18px 40px -12px rgba(0,0,0,.75);
+    max-height:0;opacity:0;visibility:hidden;overflow:hidden;
+    transition:max-height .42s var(--ease-out),opacity .3s ease,visibility 0s linear .42s}
+  .nav-l.open{max-height:70vh;opacity:1;visibility:visible;overflow-y:auto;
+    transition:max-height .42s var(--ease-out),opacity .3s ease,visibility 0s}
+  .nav-l a{display:flex;align-items:center;min-height:52px;padding:0 clamp(16px,5vw,30px);
+    font-size:13px;letter-spacing:.22em;border-bottom:1px solid var(--rule)}
+  .nav-l a:last-child{border-bottom:0}
+  .nav-l a::after{display:none}
+  .nav-l a.here{color:var(--gold-hi);background:rgba(190,154,86,.07);box-shadow:inset 2px 0 0 var(--gold)}
+  .nav-burger.x span:nth-child(1){transform:translateY(6.4px) rotate(45deg)}
+  .nav-burger.x span:nth-child(2){opacity:0}
+  .nav-burger.x span:nth-child(3){transform:translateY(-6.4px) rotate(-45deg)}
+}
+@media(max-width:560px){ .nav-l a{font-size:12px;letter-spacing:.18em} }
+@media(prefers-reduced-motion:reduce){
+  .nav-l,.nav-burger span{transition:none!important}
+}
 </style></head>
 <body>
 
@@ -724,14 +764,18 @@ nav.stuck .brand-sub{font-size:8px}
 <div class="progress" id="progress" aria-hidden="true"><i></i></div>
 <nav id="nav">
   <div class="brand" onclick="go('top')">OCTAN<span class="brand-sub">ARCANOS</span></div>
-  <div class="nav-l">
+  <div class="nav-l" id="navmenu">
     <a data-sec="sellado" onclick="go('sellado')">El Sellado</a>
-    <a data-sec="sello" class="hide-s" onclick="go('sello')">El Sello</a>
-    <a data-sec="arcano" class="hide-s" onclick="go('arcano')">Tu Arcano</a>
-    <a data-sec="umbral" class="hide-s" onclick="go('umbral')">Apertura</a>
+    <a data-sec="sello" onclick="go('sello')">El Sello</a>
+    <a data-sec="arcano" onclick="go('arcano')">Tu Arcano</a>
+    <a data-sec="umbral" onclick="go('umbral')">Apertura</a>
     <a data-sec="esencias" onclick="go('esencias')">Arcanos</a>
     <a data-sec="expansion" onclick="go('expansion')">Expansión</a>
+  </div>
+  <div class="nav-r">
     <a class="nav-cart" onclick="openCart()">CARRITO<span class="cc" id="cc">0</span></a>
+    <button type="button" id="burger" class="nav-burger" aria-expanded="false"
+            aria-controls="navmenu" aria-label="Abrir el menú"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
@@ -1873,6 +1917,43 @@ if(!RM){
   addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(pinta);}},{passive:true});
   addEventListener('resize',pinta,{passive:true});
   pinta();
+})();
+</script>
+<script>
+/* Menú móvil. Un solo juego de enlaces en el DOM: el scrollspy y el orden
+   del menú siguen leyendo .nav-l a[data-sec] sin saber que existe un panel. */
+(function(){
+  var menu=document.getElementById('navmenu'),
+      burger=document.getElementById('burger'),
+      nav=document.getElementById('nav');
+  if(!menu||!burger||!nav)return;
+  var MOVIL=function(){return window.matchMedia('(max-width:820px)').matches;};
+  function setNav(abierto){
+    menu.classList.toggle('open',abierto);
+    nav.classList.toggle('abierto',abierto);
+    burger.classList.toggle('x',abierto);
+    burger.setAttribute('aria-expanded',abierto?'true':'false');
+    burger.setAttribute('aria-label',abierto?'Cerrar el men\u00fa':'Abrir el men\u00fa');
+  }
+  window.closeNav=function(){setNav(false);};
+  burger.addEventListener('click',function(e){
+    e.stopPropagation();
+    setNav(!menu.classList.contains('open'));
+  });
+  /* Al elegir destino el panel se cierra: nadie quiere volver a tocar la X. */
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){setNav(false);});
+  });
+  var cart=document.querySelector('.nav-cart');
+  if(cart)cart.addEventListener('click',function(){setNav(false);});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&menu.classList.contains('open')){setNav(false);burger.focus();}
+  });
+  document.addEventListener('click',function(e){
+    if(menu.classList.contains('open')&&!nav.contains(e.target))setNav(false);
+  });
+  /* Al pasar a escritorio el panel deja de existir: no puede quedarse abierto. */
+  window.addEventListener('resize',function(){ if(!MOVIL())setNav(false); });
 })();
 </script>
 </body></html>
